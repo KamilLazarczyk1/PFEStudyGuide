@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Random Study — Physics for Electronics</title>
+<script>try{var t=localStorage.getItem("pfe-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 
 <link rel="stylesheet" href="./katex/katex.min.css">
 <script defer src="./katex/katex.min.js"></script>
@@ -715,11 +716,18 @@ document.getElementById('gotBtn').addEventListener('click',gotIt);
 document.getElementById('againBtn').addEventListener('click',studyAgain);
 document.getElementById('skipBtn').addEventListener('click',skip);
 document.getElementById('prompt').addEventListener('click',reveal);
-// theme
-document.getElementById('themeBtn').addEventListener('click',function(){
-  var r=document.documentElement, d=r.getAttribute('data-theme')==='dark';
-  r.setAttribute('data-theme',d?'light':'dark'); this.textContent=d?'🌙':'☀️';
-});
+// theme (persisted via localStorage)
+(function(){
+  var tb=document.getElementById('themeBtn');
+  function icon(){ tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙'; }
+  icon();
+  tb.addEventListener('click',function(){
+    var r=document.documentElement, next=r.getAttribute('data-theme')==='dark'?'light':'dark';
+    r.setAttribute('data-theme',next);
+    try{localStorage.setItem('pfe-theme',next);}catch(e){}
+    icon();
+  });
+})();
 // mobile menu
 (function(){
   var menuBtn=document.getElementById('menuBtn'), actions=document.getElementById('actions');

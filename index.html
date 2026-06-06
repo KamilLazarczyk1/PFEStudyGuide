@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Physics for Electronics — Final Exam Study Guide</title>
+<script>try{var t=localStorage.getItem("pfe-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 
 <!-- KaTeX for LaTeX rendering -->
 <link rel="stylesheet" href="./katex/katex.min.css">
@@ -837,13 +838,16 @@ revealAll.addEventListener("click",function(){
   document.querySelectorAll(".card").forEach(function(c){c.classList.add("revealed");});
 });
 
-// ---- Theme ----
+// ---- Theme (persisted via localStorage) ----
 var themeBtn=document.getElementById("themeBtn");
+function applyThemeIcon(){ themeBtn.textContent=document.documentElement.getAttribute("data-theme")==="dark"?"☀️":"🌙"; }
+applyThemeIcon();
 themeBtn.addEventListener("click",function(){
   var root=document.documentElement;
-  var dark=root.getAttribute("data-theme")==="dark";
-  root.setAttribute("data-theme",dark?"light":"dark");
-  themeBtn.textContent=dark?"🌙":"☀️";
+  var next=root.getAttribute("data-theme")==="dark"?"light":"dark";
+  root.setAttribute("data-theme",next);
+  try{localStorage.setItem("pfe-theme",next);}catch(e){}
+  applyThemeIcon();
 });
 
 // ---- Mobile menu ----
