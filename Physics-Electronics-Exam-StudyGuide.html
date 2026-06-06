@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics for Electronics — Final Exam Study Guide</title>
+
+<!-- KaTeX for LaTeX rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<style>
+:root{
+  --bg:#f4f6fb; --panel:#ffffff; --ink:#1a2233; --muted:#6b7689;
+  --line:#e3e8f0; --badge:#eef2fb; --shadow:0 1px 3px rgba(20,30,60,.07),0 8px 24px rgba(20,30,60,.05);
+  --s1:#2f6fed; --s2:#8b5cf6; --s3:#e8851b; --s4:#e0457b; --s5:#0fae8e;
+  --s1bg:#eaf1ff; --s2bg:#f1ebff; --s3bg:#fdf0e0; --s4bg:#fde9f1; --s5bg:#e4f8f3;
+}
+html[data-theme="dark"]{
+  --bg:#0f1420; --panel:#161d2c; --ink:#e7ecf5; --muted:#93a0b5;
+  --line:#27314a; --badge:#1d2638; --shadow:0 1px 3px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --s1:#6ea0ff; --s2:#b69bff; --s3:#f3ab57; --s4:#ff7aa8; --s5:#3fd6b6;
+  --s1bg:#16243f; --s2bg:#221b3a; --s3bg:#33240f; --s4bg:#341325; --s5bg:#0e2e29;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--s1)}
+
+/* Header */
+header{
+  position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in srgb,var(--panel) 86%, transparent);
+  border-bottom:1px solid var(--line);
+}
+.head-inner{max-width:1000px; margin:0 auto; padding:14px 20px}
+.title-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+h1{font-size:18px; margin:0; letter-spacing:.2px}
+h1 small{display:block; font-weight:500; color:var(--muted); font-size:12.5px; margin-top:2px}
+.spacer{flex:1}
+.btn{
+  border:1px solid var(--line); background:var(--panel); color:var(--ink);
+  border-radius:9px; padding:7px 12px; font-size:13px; cursor:pointer; font-weight:600;
+  transition:.15s; display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+}
+.btn:hover{border-color:var(--s1); color:var(--s1)}
+.btn.active{background:var(--s1); border-color:var(--s1); color:#fff}
+.controls{display:flex; gap:9px; margin-top:12px; flex-wrap:wrap; align-items:center}
+#search{
+  flex:1; min-width:180px; padding:9px 13px; border-radius:9px; border:1px solid var(--line);
+  background:var(--panel); color:var(--ink); font-size:14px;
+}
+#search:focus{outline:none; border-color:var(--s1)}
+.navchips{display:flex; gap:7px; margin-top:11px; flex-wrap:wrap}
+.chip{
+  font-size:12px; font-weight:600; padding:5px 11px; border-radius:20px; cursor:pointer;
+  border:1px solid var(--line); background:var(--panel); color:var(--muted); text-decoration:none;
+}
+.chip:hover{color:var(--ink)}
+.chip[data-s="1"]:hover{background:var(--s1bg); color:var(--s1); border-color:var(--s1)}
+.chip[data-s="2"]:hover{background:var(--s2bg); color:var(--s2); border-color:var(--s2)}
+.chip[data-s="3"]:hover{background:var(--s3bg); color:var(--s3); border-color:var(--s3)}
+.chip[data-s="4"]:hover{background:var(--s4bg); color:var(--s4); border-color:var(--s4)}
+.chip[data-s="5"]:hover{background:var(--s5bg); color:var(--s5); border-color:var(--s5)}
+
+/* Layout */
+main{max-width:1000px; margin:0 auto; padding:26px 20px 80px}
+.hint{font-size:13px; color:var(--muted); margin:0 0 22px; padding:11px 14px;
+  background:var(--badge); border-radius:10px; border:1px solid var(--line)}
+.hint b{color:var(--ink)}
+.section{margin-bottom:34px; scroll-margin-top:160px}
+.section-head{display:flex; align-items:center; gap:10px; margin:0 0 14px}
+.section-head .dot{width:11px; height:11px; border-radius:50%}
+.section-head h2{font-size:16px; margin:0; letter-spacing:.3px; text-transform:uppercase}
+.section-head .count{font-size:12px; color:var(--muted); font-weight:600}
+.sec1 .dot{background:var(--s1)} .sec2 .dot{background:var(--s2)}
+.sec3 .dot{background:var(--s3)} .sec4 .dot{background:var(--s4)} .sec5 .dot{background:var(--s5)}
+
+/* Cards */
+.card{
+  background:var(--panel); border:1px solid var(--line); border-radius:13px;
+  padding:16px 18px; margin-bottom:12px; box-shadow:var(--shadow);
+  border-left:4px solid var(--line); transition:border-color .15s;
+}
+.sec1 .card{border-left-color:var(--s1)} .sec2 .card{border-left-color:var(--s2)}
+.sec3 .card{border-left-color:var(--s3)} .sec4 .card{border-left-color:var(--s4)}
+.sec5 .card{border-left-color:var(--s5)}
+.q{display:flex; gap:11px; align-items:flex-start}
+.num{
+  flex:none; min-width:30px; height:30px; padding:0 7px; border-radius:8px; background:var(--badge);
+  color:var(--muted); font-weight:700; font-size:13.5px; display:flex; align-items:center; justify-content:center;
+}
+.sec1 .num{background:var(--s1bg); color:var(--s1)} .sec2 .num{background:var(--s2bg); color:var(--s2)}
+.sec3 .num{background:var(--s3bg); color:var(--s3)} .sec4 .num{background:var(--s4bg); color:var(--s4)}
+.sec5 .num{background:var(--s5bg); color:var(--s5)}
+.qtext{font-weight:650; font-size:15px; padding-top:4px}
+.answer{margin-top:11px; padding-left:41px; font-size:14.5px}
+.answer ul{margin:7px 0; padding-left:20px}
+.answer li{margin:3px 0}
+.answer p{margin:7px 0}
+.tag{display:inline-block; font-size:11px; font-weight:700; color:var(--muted);
+  background:var(--badge); padding:2px 8px; border-radius:6px; margin-right:6px; letter-spacing:.3px}
+.note{font-size:12.5px; color:var(--muted); border-left:3px solid var(--s3);
+  padding:6px 11px; margin-top:9px; background:var(--s3bg); border-radius:0 8px 8px 0}
+html[data-theme="dark"] .note{background:color-mix(in srgb,var(--s3bg) 60%,transparent)}
+.katex{font-size:1.04em}
+.katex-display{margin:8px 0; overflow-x:auto; overflow-y:hidden; padding:2px 0}
+
+/* Diagrams */
+.diagram{margin:12px 0 4px; padding:12px; background:var(--bg); border:1px solid var(--line);
+  border-radius:10px; text-align:center}
+.diagram svg{max-width:100%; height:auto}
+.diagram .cap{font-size:12px; color:var(--muted); margin-top:6px}
+.svg-ink{stroke:var(--ink)} .svg-fill{fill:var(--ink)}
+
+/* Flashcard mode */
+body.flash .answer{
+  filter:blur(7px); opacity:.42; cursor:pointer; user-select:none;
+  transition:.18s; position:relative;
+}
+body.flash .card.revealed .answer{filter:none; opacity:1; cursor:auto; user-select:auto}
+body.flash .card .answer::after{
+  content:"👁  click to reveal"; position:absolute; inset:0; display:flex; align-items:center;
+  justify-content:center; font-weight:700; color:var(--ink); filter:none; font-size:13px; letter-spacing:.3px;
+}
+body.flash .card.revealed .answer::after{display:none}
+
+.no-match{display:none !important}
+.empty{display:none; text-align:center; color:var(--muted); padding:40px; font-size:14px}
+footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12.5px;text-align:center}
+@media(max-width:560px){.answer{padding-left:0}.title-row h1{font-size:16px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="title-row">
+      <h1>⚡ Physics for Electronics — Final Exam
+        <small>Electromagnetism · 50 questions · all answers + LaTeX formulas</small>
+      </h1>
+      <div class="spacer"></div>
+      <a class="btn" href="Physics-Exam-Randomizer.html" style="text-decoration:none" title="Open the random-study widget">🎲 Random study →</a>
+      <button class="btn" id="flashBtn">🃏 Flashcard mode</button>
+      <button class="btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="🔎 Search questions, formulas, keywords… (e.g. Gauss, capacitance, skin depth)">
+      <button class="btn" id="revealAll" style="display:none">Reveal all</button>
+    </div>
+    <div class="navchips">
+      <a class="chip" data-s="1" href="#s1">Electrostatic field</a>
+      <a class="chip" data-s="2" href="#s2">Dielectrics</a>
+      <a class="chip" data-s="3" href="#s3">Constant current</a>
+      <a class="chip" data-s="4" href="#s4">Magnetic field</a>
+      <a class="chip" data-s="5" href="#s5">Plane wave</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <p class="hint">
+    <b>How to use:</b> Default view shows every question with its answer. Hit <b>🃏 Flashcard mode</b> to
+    hide the answers and quiz yourself — click any card to reveal it. Use search to jump to a topic.
+    Questions are numbered as in <b>Group A</b>; Group B is the same set, just shuffled.
+  </p>
+
+  <!-- ============ SECTION 1: ELECTROSTATIC FIELD ============ -->
+  <section class="section sec1" id="s1">
+    <div class="section-head"><span class="dot"></span><h2>Electrostatic field</h2><span class="count">Q1–12</span></div>
+
+    <div class="card">
+      <div class="q"><span class="num">1</span><div class="qtext">Charge properties</div></div>
+      <div class="answer">
+        Three fundamental properties of electric charge:
+        <ul>
+          <li><b>Quantization</b> — charge exists in integer multiples of the elementary charge: $Q = ne$, where $e = 1.602\times10^{-19}\,\text{C}$.</li>
+          <li><b>Conservation</b> — total charge of an isolated system stays constant.</li>
+          <li><b>Invariance</b> — the magnitude of a charge does not depend on its velocity / reference frame.</li>
+        </ul>
+        Two kinds exist (+/−); like charges repel, unlike attract.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">2</span><div class="qtext">Electric charge distributions &amp; charge densities (line, surface, volume)</div></div>
+      <div class="answer">
+        Each density is the local charge per unit length / area / volume (a derivative); the <b>total charge</b>
+        of the distribution is recovered by <b>integrating</b> the density:
+        <ul>
+          <li>Line: $\lambda = \dfrac{dQ}{dl}\ \left[\text{C/m}\right] \;\Rightarrow\; Q = \displaystyle\int_L \lambda\,dl$</li>
+          <li>Surface: $\sigma = \dfrac{dQ}{dS}\ \left[\text{C/m}^2\right] \;\Rightarrow\; Q = \displaystyle\int_S \sigma\,dS$</li>
+          <li>Volume: $\rho = \dfrac{dQ}{dV}\ \left[\text{C/m}^3\right] \;\Rightarrow\; Q = \displaystyle\int_V \rho\,dV$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">3</span><div class="qtext">Coulomb's law</div></div>
+      <div class="answer">
+        The force between two point charges is proportional to the product of the charges and inversely
+        proportional to the square of the distance between them:
+        $$\vec{F} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat{r}$$
+        Directed along the line joining them (repulsive for like charges).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">4</span><div class="qtext">Electric field intensity — definition &amp; field at distance $r$ from a point charge $q$</div></div>
+      <div class="answer">
+        Field intensity = force per unit positive test charge:
+        $$\vec{E} = \frac{\vec{F}}{q_0}\ \left[\text{V/m} = \text{N/C}\right]$$
+        For a point charge:
+        $$\vec{E} = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{r^2}\,\hat{r}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">5</span><div class="qtext">Formula for the work of electric forces</div></div>
+      <div class="answer">
+        Work to move charge $q$ from $a$ to $b$ equals the drop in potential energy:
+        $$W = q\,(V_a - V_b) = \int_a^b q\,\vec{E}\cdot d\vec{l} = -\Delta U$$
+        The electrostatic force is conservative, so $W$ is path-independent.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">6</span><div class="qtext">Definition of voltage</div></div>
+      <div class="answer">
+        Voltage (potential difference) = work per unit charge needed to move a charge between two points:
+        $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">7</span><div class="qtext">Definition of potential; potential of point $P$ at distance $R$ from charge $q$</div></div>
+      <div class="answer">
+        Electric potential = work done per unit charge to bring a positive test charge from infinity to point $P$:
+        $$V = \frac{W_{\infty\to P}}{q_0}\ \left[\text{V}\right]$$
+        For a point charge:
+        $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">8</span><div class="qtext">Potential from superposition (point, line, surface, volume distributions)</div></div>
+      <div class="answer">
+        Add the contribution of every source element ($k = \tfrac{1}{4\pi\varepsilon_0}$):
+        <ul>
+          <li>Point charges: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\sum_i \frac{q_i}{r_i}$</li>
+          <li>Line: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\lambda\,dl}{r}$</li>
+          <li>Surface: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\sigma\,dS}{r}$</li>
+          <li>Volume: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\rho\,dV}{r}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">9</span><div class="qtext">Divergence — definition &amp; in Cartesian coordinates</div></div>
+      <div class="answer">
+        Divergence measures the net outward flux of a vector field per unit volume (a source/sink density):
+        $$\operatorname{div}\vec{A} = \nabla\cdot\vec{A}
+        = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">10</span><div class="qtext">Poisson &amp; Laplace equations</div></div>
+      <div class="answer">
+        <ul>
+          <li>Poisson (region with charge): $\nabla^2 V = -\dfrac{\rho}{\varepsilon}$</li>
+          <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 V = 0$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">11</span><div class="qtext">Gauss's law — formula &amp; sketch</div></div>
+      <div class="answer">
+        The net electric flux through any closed surface equals the enclosed charge over permittivity.
+        <ul>
+          <li>Integral form: $\displaystyle\oint_S \vec{E}\cdot d\vec{S} = \frac{Q_{enc}}{\varepsilon_0}$</li>
+          <li>Differential form: $\nabla\cdot\vec{E} = \dfrac{\rho}{\varepsilon_0}$</li>
+        </ul>
+        <div class="diagram">
+          <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
+            <circle cx="140" cy="85" r="60" class="svg-ink" stroke-dasharray="5 4"/>
+            <g stroke="var(--s1)">
+              <line x1="140" y1="85" x2="140" y2="14"/><polygon points="140,8 136,18 144,18" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="140" y2="156"/><polygon points="140,162 136,152 144,152" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="211" y2="85"/><polygon points="217,85 207,81 207,89" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="69" y2="85"/><polygon points="63,85 73,81 73,89" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="190" y2="35"/><polygon points="195,30 185,33 189,40" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="90" y2="35"/><polygon points="85,30 95,33 91,40" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="190" y2="135"/><polygon points="195,140 185,137 189,130" fill="var(--s1)" stroke="none"/>
+              <line x1="140" y1="85" x2="90" y2="135"/><polygon points="85,140 95,137 91,130" fill="var(--s1)" stroke="none"/>
+            </g>
+            <circle cx="140" cy="85" r="13" fill="var(--s4)" stroke="none"/>
+            <text x="140" y="90" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">+q</text>
+            <text x="205" y="150" font-size="11" class="svg-fill">Gaussian surface</text>
+          </svg>
+          <div class="cap">Field lines from an enclosed charge piercing a closed (Gaussian) surface.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">12</span><div class="qtext">Sketch of electric shielding (Faraday cage)</div></div>
+      <div class="answer">
+        Inside a hollow conductor placed in an external field, free charges redistribute on the outer surface,
+        so the induced charges cancel the field inside. Net field in the cavity is $\vec{E} = 0$ — a protected region.
+        <div class="diagram">
+          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
+            <g stroke="var(--s1)">
+              <line x1="20" y1="30" x2="120" y2="30"/><polygon points="126,30 116,26 116,34" fill="var(--s1)" stroke="none"/>
+              <line x1="20" y1="85" x2="80" y2="85"/>
+              <line x1="20" y1="140" x2="120" y2="140"/><polygon points="126,140 116,136 116,144" fill="var(--s1)" stroke="none"/>
+            </g>
+            <g stroke="var(--s1)">
+              <line x1="225" y1="30" x2="280" y2="30"/><polygon points="286,30 276,26 276,34" fill="var(--s1)" stroke="none"/>
+              <line x1="225" y1="140" x2="280" y2="140"/><polygon points="286,140 276,136 276,144" fill="var(--s1)" stroke="none"/>
+            </g>
+            <rect x="120" y="45" width="65" height="80" rx="6" class="svg-ink" stroke-width="3"/>
+            <text x="152" y="90" text-anchor="middle" font-size="14" font-weight="700" class="svg-fill">E=0</text>
+            <text x="123" y="40" font-size="13" fill="var(--s4)" font-weight="700">−</text>
+            <text x="123" y="122" font-size="13" fill="var(--s4)" font-weight="700">−</text>
+            <text x="178" y="40" font-size="13" fill="var(--s1)" font-weight="700">+</text>
+            <text x="178" y="122" font-size="13" fill="var(--s1)" font-weight="700">+</text>
+            <text x="118" y="138" font-size="10" class="svg-fill" text-anchor="end" dx="-4">conductor</text>
+          </svg>
+          <div class="cap">External field stops at the conductor; the cavity stays field-free.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: DIELECTRICS ============ -->
+  <section class="section sec2" id="s2">
+    <div class="section-head"><span class="dot"></span><h2>Dielectrics</h2><span class="count">Q13–21</span></div>
+
+    <div class="card">
+      <div class="q"><span class="num">13</span><div class="qtext">Types of polarisation</div></div>
+      <div class="answer">
+        <ul>
+          <li><b>Electronic</b> — displacement of the electron cloud relative to the nucleus.</li>
+          <li><b>Ionic</b> — relative displacement of positive and negative ions.</li>
+          <li><b>Orientational / dipolar</b> — alignment of permanent dipoles with the field.</li>
+          <li><b>Interfacial / space-charge</b> — charge accumulation at boundaries/interfaces.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">14</span><div class="qtext">Definition of electric (dipole) moment</div></div>
+      <div class="answer">
+        A measure of the separation of equal and opposite charges:
+        $$\vec{p} = q\,\vec{d}\qquad \left[\text{C}\cdot\text{m}\right]$$
+        Directed from the negative to the positive charge.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">15</span><div class="qtext">Definition of the polarisation vector $\vec{P}$</div></div>
+      <div class="answer">
+        Macroscopic dipole moment per unit volume of the dielectric:
+        $$\vec{P} = \lim_{\Delta V\to 0}\frac{\sum_i \vec{p}_i}{\Delta V}\ \left[\text{C/m}^2\right]$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">16</span><div class="qtext">Bound charge formula</div></div>
+      <div class="answer">
+        <ul>
+          <li>Bound surface charge density: $\sigma_b = \vec{P}\cdot\hat{n}$</li>
+          <li>Bound volume charge density: $\rho_b = -\nabla\cdot\vec{P}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">17</span><div class="qtext">Classification of dielectrics</div></div>
+      <div class="answer">
+        <ul>
+          <li><b>Polar</b> — molecules with a permanent dipole moment, e.g. $\text{H}_2\text{O}$.</li>
+          <li><b>Non-polar</b> — symmetric molecules, dipoles only induced by an external field, e.g. $\text{O}_2$.</li>
+        </ul>
+        (May also be split by linearity — linear vs. non-linear like ferroelectrics — and isotropic vs. anisotropic.)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">18</span><div class="qtext">Boundary condition for vector $\vec{D}$</div></div>
+      <div class="answer">
+        The normal component of $\vec{D}$ jumps by the free surface charge density:
+        $$D_{1n} - D_{2n} = \sigma_s$$
+        If there is no free surface charge ($\sigma_s = 0$): $\;D_{1n} = D_{2n}$ (normal component continuous).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">19</span><div class="qtext">Capacitance — parallel-plate, cylindrical, spherical</div></div>
+      <div class="answer">
+        <ul>
+          <li>Parallel plate: $C = \dfrac{\varepsilon A}{d}$</li>
+          <li>Cylindrical (length $L$, radii $a&lt;b$): $C = \dfrac{2\pi\varepsilon L}{\ln(b/a)}$</li>
+          <li>Spherical (radii $a&lt;b$): $C = 4\pi\varepsilon\,\dfrac{ab}{b-a}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">20</span><div class="qtext">Poynting's hypothesis</div></div>
+      <div class="answer">
+        The cross product of the electric and magnetic fields gives the direction and magnitude of
+        electromagnetic power flow per unit area:
+        $$\vec{S} = \vec{E}\times\vec{H}\ \left[\text{W/m}^2\right]$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">21</span><div class="qtext">Examples of dielectrics with relative permittivity $\varepsilon_r$</div></div>
+      <div class="answer">
+        <ul>
+          <li>Vacuum: $\varepsilon_r = 1$</li>
+          <li>Air: $\varepsilon_r \approx 1.0006$</li>
+          <li>Paper: $\varepsilon_r \approx 3.7$</li>
+          <li>Glass: $\varepsilon_r \approx 5\text{–}10$</li>
+          <li>Pure water: $\varepsilon_r \approx 80$</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3: CONSTANT CURRENT ============ -->
+  <section class="section sec3" id="s3">
+    <div class="section-head"><span class="dot"></span><h2>Constant current</h2><span class="count">Q22–34</span></div>
+
+    <div class="card">
+      <div class="q"><span class="num">22</span><div class="qtext">Electric current — definition, characteristics, relation to field &amp; potential</div></div>
+      <div class="answer">
+        Current = net rate of charge flow through a cross-section:
+        $$I = \frac{dQ}{dt}\ \left[\text{A}\right]$$
+        Conventional current flows from high to low potential (direction of positive carriers), driven by the
+        internal field via $\vec{J} = \sigma\vec{E}$. It is a scalar; the field $\vec{E}$ inside the conductor is non-zero.
+        <div class="diagram">
+          <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
+            <line x1="30" y1="60" x2="80" y2="60" class="svg-ink"/>
+            <rect x="80" y="45" width="140" height="30" rx="4" class="svg-ink"/>
+            <line x1="220" y1="60" x2="270" y2="60" class="svg-ink"/>
+            <line x1="22" y1="48" x2="22" y2="72" class="svg-ink" stroke-width="3"/>
+            <line x1="30" y1="52" x2="30" y2="68" class="svg-ink"/>
+            <line x1="270" y1="52" x2="270" y2="68" class="svg-ink" stroke-width="3"/>
+            <line x1="278" y1="48" x2="278" y2="72" class="svg-ink"/>
+            <text x="14" y="44" font-size="13" class="svg-fill">+</text>
+            <text x="282" y="44" font-size="13" class="svg-fill">−</text>
+            <g stroke="var(--s3)"><line x1="120" y1="60" x2="170" y2="60"/><polygon points="176,60 166,56 166,64" fill="var(--s3)" stroke="none"/></g>
+            <text x="135" y="40" font-size="12" fill="var(--s3)" font-weight="700">I, E</text>
+            <text x="120" y="98" font-size="11" class="svg-fill">conductor / resistor</text>
+          </svg>
+          <div class="cap">Field $\vec E$ drives current $I$ from + to − terminal through the conductor.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">23</span><div class="qtext">Volume, surface &amp; linear current density definitions</div></div>
+      <div class="answer">
+        <ul>
+          <li>Volume current density: $\vec{J} = \dfrac{dI}{dS_\perp}\ \left[\text{A/m}^2\right]$</li>
+          <li>Surface current density: $\vec{K} = \dfrac{dI}{dl_\perp}\ \left[\text{A/m}\right]$</li>
+          <li>Linear (line) current: $I = \dfrac{dQ}{dt}\ \left[\text{A}\right]$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">24</span><div class="qtext">Current intensity</div></div>
+      <div class="answer">
+        A scalar = total charge crossing a cross-section per unit time; the flux of $\vec{J}$ through a surface:
+        $$I = \int_S \vec{J}\cdot d\vec{S}\ \left[\text{A}\right]$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">25</span><div class="qtext">Continuity equation (integral &amp; differential) + meaning</div></div>
+      <div class="answer">
+        <ul>
+          <li>Differential form: $\nabla\cdot\vec{J} = -\dfrac{\partial\rho}{\partial t}$</li>
+          <li>Integral form: $\displaystyle\oint_S \vec{J}\cdot d\vec{S} = -\frac{dQ}{dt}$</li>
+        </ul>
+        Expresses <b>conservation of charge</b>: the net current leaving a closed surface equals the rate at which
+        the enclosed charge decreases. (Steady state $\Rightarrow \nabla\cdot\vec J = 0$.)
+        <div class="diagram">
+          <svg viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
+            <ellipse cx="120" cy="75" rx="52" ry="46" class="svg-ink" stroke-dasharray="5 4"/>
+            <text x="120" y="72" text-anchor="middle" font-size="12" class="svg-fill" font-weight="700">Q</text>
+            <text x="120" y="90" text-anchor="middle" font-size="11" fill="var(--s4)">dQ/dt &lt; 0</text>
+            <g stroke="var(--s3)">
+              <line x1="120" y1="29" x2="120" y2="6"/><polygon points="120,0 116,10 124,10" fill="var(--s3)" stroke="none"/>
+              <line x1="172" y1="75" x2="200" y2="75"/><polygon points="206,75 196,71 196,79" fill="var(--s3)" stroke="none"/>
+              <line x1="120" y1="121" x2="120" y2="144"/><polygon points="120,150 116,140 124,140" fill="var(--s3)" stroke="none"/>
+              <line x1="68" y1="75" x2="40" y2="75"/><polygon points="34,75 44,71 44,79" fill="var(--s3)" stroke="none"/>
+            </g>
+            <text x="180" y="60" font-size="12" fill="var(--s3)" font-weight="700">J</text>
+          </svg>
+          <div class="cap">Current flowing out of a closed volume ⇒ charge inside is decreasing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">26</span><div class="qtext">Boundary condition for $J_n$</div></div>
+      <div class="answer">
+        For steady currents, the normal component of current density is continuous across an interface
+        (no charge accumulation):
+        $$J_{1n} = J_{2n}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">27</span><div class="qtext">Ohm's law — point form &amp; circuital form</div></div>
+      <div class="answer">
+        <ul>
+          <li>Point (local) form: $\vec{J} = \sigma\vec{E}$ &nbsp;(current density = conductivity × field)</li>
+          <li>Circuital form: $U = IR$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">28</span><div class="qtext">Resistivity of copper (with unit)</div></div>
+      <div class="answer">
+        $$\rho_{Cu} \approx 1.68\times10^{-8}\ \Omega\cdot\text{m}\quad(\text{at }20^\circ\text{C})$$
+        One of the best common conductors (very low resistivity).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">29</span><div class="qtext">Temperature dependence of resistance — formula &amp; $\alpha$ values</div></div>
+      <div class="answer">
+        $$R(T) = R_0\,\bigl[\,1 + \alpha\,(T - T_0)\,\bigr]$$
+        $\alpha$ is the temperature coefficient of resistance:
+        <ul>
+          <li>Copper: $\alpha_{Cu} \approx 3.9\times10^{-3}\ \text{K}^{-1}\;(\approx 0.004)$</li>
+          <li>Metals: $\alpha &gt; 0$ — resistance rises with temperature.</li>
+          <li>Electrolytes &amp; semiconductors: $\alpha &lt; 0$ — resistance falls with temperature.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">30</span><div class="qtext">EMF (electromotive force) definition</div></div>
+      <div class="answer">
+        Energy supplied by a source (e.g. a battery) per unit charge to drive current around a complete circuit:
+        $$\varepsilon = \frac{W}{q} = \oint \vec{E}_{\text{ext}}\cdot d\vec{l}\ \left[\text{V}\right]$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">31</span><div class="qtext">Kirchhoff's first law (KCL) &amp; its physical basis</div></div>
+      <div class="answer">
+        The sum of currents entering a node equals the sum leaving it:
+        $$\sum I = 0 \quad\text{(at a node)}$$
+        Results from <b>conservation of electric charge</b>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">32</span><div class="qtext">Kirchhoff's second law (KVL) &amp; its physical basis</div></div>
+      <div class="answer">
+        The algebraic sum of EMFs and voltage drops around any closed loop is zero:
+        $$\sum \varepsilon = \sum IR \quad\Longleftrightarrow\quad \sum U = 0$$
+        Results from <b>conservation of energy</b>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">33</span><div class="qtext">Joule heating — point &amp; circuital form</div></div>
+      <div class="answer">
+        <ul>
+          <li>Circuital form: $P = I^2 R = UI = \dfrac{U^2}{R}\ \left[\text{W}\right]$</li>
+          <li>Point form (power density): $w = \vec{J}\cdot\vec{E} = \sigma E^2\ \left[\text{W/m}^3\right]$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">34</span><div class="qtext">Safety standards for DC and AC current</div></div>
+      <div class="answer">
+        <span class="tag">FILLED IN</span> (this card was left blank in the flashcards — values below are the conventional teaching standard.)
+        <p><b>Safe touch-voltage limits</b> (long-term, conventional):</p>
+        <ul>
+          <li>AC (50–60 Hz): $U_{safe} = 50\,\text{V}$ in dry conditions; $25\,\text{V}$ in wet / hazardous conditions.</li>
+          <li>DC: $U_{safe} = 120\,\text{V}$ in dry conditions; $60\,\text{V}$ in wet conditions.</li>
+        </ul>
+        <p><b>Body-current thresholds (AC, ~50 Hz):</b></p>
+        <ul>
+          <li>Perception: $\sim 0.5\text{–}1\,\text{mA}$</li>
+          <li>Let-go (muscle lock, can't release): $\sim 10\text{–}15\,\text{mA}$</li>
+          <li>Ventricular fibrillation (life-threatening): $\gtrsim 30\text{–}50\,\text{mA}$</li>
+        </ul>
+        DC needs roughly 2–4× higher current for the same effect, so <b>AC at mains frequency is more dangerous</b>
+        (it causes muscle tetany and fibrillation more readily). Protection: RCD/RCCB tripping at $\le 30\,\text{mA}$.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4: MAGNETIC FIELD ============ -->
+  <section class="section sec4" id="s4">
+    <div class="section-head"><span class="dot"></span><h2>Magnetic field</h2><span class="count">Q35–44</span></div>
+
+    <div class="card">
+      <div class="q"><span class="num">35</span><div class="qtext">Grassmann law (force on a current element)</div></div>
+      <div class="answer">
+        Differential magnetic force on a current element $I\,d\vec{l}$ in an external field $\vec{B}$:
+        $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">36</span><div class="qtext">Biot–Savart law</div></div>
+      <div class="answer">
+        Magnetic flux density produced by a current element:
+        $$d\vec{B} = \frac{\mu_0}{4\pi}\,\frac{I\,d\vec{l}\times\hat{r}}{r^2}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">37</span><div class="qtext">Boundary condition for vector $\vec{B}$</div></div>
+      <div class="answer">
+        The normal component of $\vec{B}$ is always continuous across a boundary (no magnetic monopoles,
+        $\nabla\cdot\vec{B} = 0$):
+        $$B_{1n} = B_{2n}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">38</span><div class="qtext">Definition of $\vec{H}$ (magnetic field intensity)</div></div>
+      <div class="answer">
+        $\vec{H}$ separates the effect of free (macroscopic) currents from bound material currents:
+        $$\vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M} = \frac{\vec{B}}{\mu}\ \left[\text{A/m}\right]$$
+        where $\vec{M}$ is the magnetization.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">39</span><div class="qtext">Ampère's law</div></div>
+      <div class="answer">
+        The line integral of $\vec{H}$ around a closed loop equals the enclosed free current.
+        <ul>
+          <li>Integral form: $\displaystyle\oint \vec{H}\cdot d\vec{l} = I_{enc}$</li>
+          <li>Differential form: $\nabla\times\vec{H} = \vec{J}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">40</span><div class="qtext">Maxwell–Faraday law</div></div>
+      <div class="answer">
+        A time-varying magnetic field produces a circulating (non-conservative) electric field.
+        <ul>
+          <li>Integral form: $\varepsilon = -\dfrac{d\Phi_m}{dt}$</li>
+          <li>Differential form: $\nabla\times\vec{E} = -\dfrac{\partial\vec{B}}{\partial t}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">41</span><div class="qtext">Mutual induction — definition</div></div>
+      <div class="answer">
+        The production of an EMF in one coil/circuit caused by a time-varying current in a nearby second coil/circuit:
+        $$\varepsilon_2 = -M\,\frac{dI_1}{dt}$$
+        where $M$ is the mutual inductance.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">42</span><div class="qtext">EMF of self- and mutual induction</div></div>
+      <div class="answer">
+        <ul>
+          <li>Self-induction: $\varepsilon_L = -L\,\dfrac{dI}{dt}$</li>
+          <li>Mutual induction: $\varepsilon_M = -M\,\dfrac{dI_2}{dt}$</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">43</span><div class="qtext">Magnetic energy of an inductance carrying current</div></div>
+      <div class="answer">
+        Total energy stored in the magnetic field of an inductor:
+        $$W_m = \frac{1}{2}L I^2$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">44</span><div class="qtext">Density of magnetic field energy</div></div>
+      <div class="answer">
+        Magnetic energy stored per unit volume:
+        $$w_m = \frac{1}{2}\vec{B}\cdot\vec{H} = \frac{1}{2}\mu H^2 = \frac{B^2}{2\mu}\ \left[\text{J/m}^3\right]$$
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5: UNIFORM PLANE WAVE ============ -->
+  <section class="section sec5" id="s5">
+    <div class="section-head"><span class="dot"></span><h2>Uniform plane wave</h2><span class="count">Q45–50</span></div>
+
+    <div class="card">
+      <div class="q"><span class="num">45</span><div class="qtext">Maxwell's equations in free space (no charges/currents), point form</div></div>
+      <div class="answer">
+        $$\nabla\cdot\vec{E} = 0 \qquad \nabla\cdot\vec{H} = 0$$
+        $$\nabla\times\vec{E} = -\mu_0\frac{\partial\vec{H}}{\partial t} \qquad
+        \nabla\times\vec{H} = \varepsilon_0\frac{\partial\vec{E}}{\partial t}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">46</span><div class="qtext">Helmholtz wave equation</div></div>
+      <div class="answer">
+        The frequency-domain wave equation derived from Maxwell's equations:
+        $$\nabla^2\vec{E} + \beta^2\vec{E} = 0,\qquad \beta = \omega\sqrt{\mu\varepsilon}$$
+        where $\beta$ is the phase constant (wave number).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">47</span><div class="qtext">Velocity of an EM wave in free space</div></div>
+      <div class="answer">
+        $$c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} \approx 3\times10^8\ \text{m/s}$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">48</span><div class="qtext">Drawing of a uniform plane wave</div></div>
+      <div class="answer">
+        $\vec{E}$ and $\vec{H}$ are mutually perpendicular and both perpendicular to the direction of
+        propagation $\vec{k}$ (a transverse wave); they oscillate in phase.
+        <div class="diagram">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
+            <line x1="20" y1="90" x2="305" y2="90" class="svg-ink"/>
+            <polygon points="312,90 302,86 302,94" class="svg-fill"/>
+            <text x="300" y="108" font-size="12" class="svg-fill" font-weight="700">k</text>
+            <path d="M20,90 Q57,20 95,90 T170,90 T245,90 T305,90" stroke="var(--s1)"/>
+            <text x="120" y="34" font-size="13" fill="var(--s1)" font-weight="700">E</text>
+            <path d="M20,90 Q57,126 95,90 T170,90 T245,90 T305,90" stroke="var(--s5)" opacity=".95"/>
+            <text x="120" y="146" font-size="13" fill="var(--s5)" font-weight="700">H</text>
+          </svg>
+          <div class="cap">$\vec E \perp \vec H \perp \vec k$ — fields in phase, propagating along $\vec k$.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">49</span><div class="qtext">Wave impedance of free space</div></div>
+      <div class="answer">
+        Ratio of the $E$ and $H$ field magnitudes in free space:
+        $$\eta_0 = \frac{E}{H} = \sqrt{\frac{\mu_0}{\varepsilon_0}} \approx 120\pi \approx 377\ \Omega$$
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q"><span class="num">50</span><div class="qtext">Depth of penetration (skin depth)</div></div>
+      <div class="answer">
+        The distance a wave travels into a conductor before its amplitude drops to $1/e$ ($\approx 37\%$):
+        $$\delta = \sqrt{\frac{2}{\omega\mu\sigma}}\ \left[\text{m}\right]$$
+        Higher frequency / conductivity ⇒ smaller skin depth.
+      </div>
+    </div>
+  </section>
+
+  <div class="empty" id="empty">No questions match your search.</div>
+</main>
+
+<footer>
+  50 / 50 questions answered · formulas rendered with KaTeX · built from the Group A exam list + your friend's flashcards.<br>
+  Card 34 (safety) was blank in the flashcards and has been filled with the standard values; Q29 adds the copper $\alpha$ value.
+</footer>
+
+<script>
+// ---- KaTeX auto-render ----
+function renderMath(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{
+      delimiters:[
+        {left:"$$",right:"$$",display:true},
+        {left:"$",right:"$",display:false},
+        {left:"\\[",right:"\\]",display:true},
+        {left:"\\(",right:"\\)",display:false}
+      ],
+      throwOnError:false
+    });
+  }
+}
+window.addEventListener("DOMContentLoaded",function(){ setTimeout(renderMath,60); });
+window.addEventListener("load",renderMath);
+
+// ---- Flashcard mode ----
+var flashBtn=document.getElementById("flashBtn");
+var revealAll=document.getElementById("revealAll");
+flashBtn.addEventListener("click",function(){
+  var on=document.body.classList.toggle("flash");
+  flashBtn.classList.toggle("active",on);
+  flashBtn.textContent= on ? "📖 Study mode" : "🃏 Flashcard mode";
+  revealAll.style.display = on ? "inline-flex" : "none";
+  if(!on){ document.querySelectorAll(".card.revealed").forEach(function(c){c.classList.remove("revealed");}); }
+});
+document.querySelectorAll(".card").forEach(function(card){
+  card.addEventListener("click",function(e){
+    if(document.body.classList.contains("flash")){ card.classList.toggle("revealed"); }
+  });
+});
+revealAll.addEventListener("click",function(){
+  document.querySelectorAll(".card").forEach(function(c){c.classList.add("revealed");});
+});
+
+// ---- Theme ----
+var themeBtn=document.getElementById("themeBtn");
+themeBtn.addEventListener("click",function(){
+  var root=document.documentElement;
+  var dark=root.getAttribute("data-theme")==="dark";
+  root.setAttribute("data-theme",dark?"light":"dark");
+  themeBtn.textContent=dark?"🌙":"☀️";
+});
+
+// ---- Search ----
+var search=document.getElementById("search");
+var empty=document.getElementById("empty");
+search.addEventListener("input",function(){
+  var q=search.value.trim().toLowerCase();
+  var anyVisible=false;
+  document.querySelectorAll(".section").forEach(function(sec){
+    var secVisible=false;
+    sec.querySelectorAll(".card").forEach(function(card){
+      var match = q==="" || card.textContent.toLowerCase().indexOf(q)>-1;
+      card.classList.toggle("no-match",!match);
+      if(match){secVisible=true; anyVisible=true;}
