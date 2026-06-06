@@ -262,16 +262,17 @@ body{
     </div></article>
 
     <article class="qitem" data-sec="1" data-num="6"><h3 class="q">Definition of voltage</h3><div class="ans">
-      Voltage (potential difference) = work per unit charge needed to move a charge between two points:
-      $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
-    </div></article>
+        Voltage (potential difference) between two points — the work per unit charge to move a charge between them, equal to the line integral of the field:
+        $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla V$, used in the potential definition.)
+      </div></article>
 
     <article class="qitem" data-sec="1" data-num="7"><h3 class="q">Definition of potential; potential of point P at distance R from charge q</h3><div class="ans">
-      Electric potential = work done per unit charge to bring a positive test charge from infinity to point $P$:
-      $$V = \frac{W_{\infty\to P}}{q_0}\ \left[\text{V}\right]$$
-      For a point charge:
-      $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
-    </div></article>
+        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla V$:
+        $$V = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        For a point charge:
+        $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
+      </div></article>
 
     <article class="qitem" data-sec="1" data-num="8"><h3 class="q">Potential from superposition (point, line, surface, volume distributions)</h3><div class="ans">
       Add the contribution of every source element:
@@ -322,29 +323,26 @@ body{
       </div>
     </div></article>
 
-    <article class="qitem" data-sec="1" data-num="12"><h3 class="q">Sketch of electric shielding (Faraday cage)</h3><div class="ans">
-      Inside a hollow conductor placed in an external field, free charges redistribute on the outer surface, so the induced charges cancel the field inside. Net field in the cavity is $\vec{E} = 0$ — a protected region.
-      <div class="diagram">
-        <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
-          <g stroke="var(--s1)">
-            <line x1="20" y1="30" x2="120" y2="30"/><polygon points="126,30 116,26 116,34" fill="var(--s1)" stroke="none"/>
-            <line x1="20" y1="85" x2="80" y2="85"/>
-            <line x1="20" y1="140" x2="120" y2="140"/><polygon points="126,140 116,136 116,144" fill="var(--s1)" stroke="none"/>
-          </g>
-          <g stroke="var(--s1)">
-            <line x1="225" y1="30" x2="280" y2="30"/><polygon points="286,30 276,26 276,34" fill="var(--s1)" stroke="none"/>
-            <line x1="225" y1="140" x2="280" y2="140"/><polygon points="286,140 276,136 276,144" fill="var(--s1)" stroke="none"/>
-          </g>
-          <rect x="120" y="45" width="65" height="80" rx="6" class="svg-ink" stroke-width="3"/>
-          <text x="152" y="90" text-anchor="middle" font-size="14" font-weight="700" class="svg-fill">E=0</text>
-          <text x="123" y="40" font-size="13" fill="var(--s4)" font-weight="700">−</text>
-          <text x="123" y="122" font-size="13" fill="var(--s4)" font-weight="700">−</text>
-          <text x="178" y="40" font-size="13" fill="var(--s1)" font-weight="700">+</text>
-          <text x="178" y="122" font-size="13" fill="var(--s1)" font-weight="700">+</text>
-        </svg>
-        <div class="cap">External field stops at the conductor; the cavity stays field-free.</div>
-      </div>
-    </div></article>
+    <article class="qitem" data-sec="1" data-num="12"><h3 class="q">Sketch of electric shielding (shielded cable)</h3><div class="ans">
+        An <b>electric line (cable) is shielded</b> by wrapping the conductor in a (usually grounded) metallic shield: it intercepts external fields and confines the cable's own field, so neighbouring circuits aren't disturbed. Cross-section, centre outwards:
+        <div class="diagram">
+          <svg viewBox="0 0 340 196" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(92,98)">
+              <circle r="84" fill="none" class="svg-ink" stroke-width="9" opacity=".4"/>
+              <circle r="60" fill="none" stroke="var(--s4)" stroke-width="9"/>
+              <circle r="38" fill="none" stroke="var(--s5)" stroke-width="12" opacity=".55"/>
+              <circle r="15" fill="var(--s3)"/>
+            </g>
+            <g font-size="11.5" class="svg-fill">
+              <rect x="196" y="34" width="13" height="13" rx="2" fill="var(--s3)"/><text x="215" y="44">Conductor (Cu core)</text>
+              <rect x="196" y="58" width="13" height="13" rx="2" fill="var(--s5)" opacity=".55"/><text x="215" y="68">Insulation (dielectric)</text>
+              <rect x="196" y="82" width="13" height="13" rx="2" fill="var(--s4)"/><text x="215" y="92">Metallic shield</text>
+              <rect x="196" y="106" width="13" height="13" rx="2" class="svg-fill" opacity=".4"/><text x="215" y="116">Outer jacket</text>
+            </g>
+          </svg>
+          <div class="cap">Shielded (coaxial) cable: conductor → dielectric insulation → metallic shield → outer jacket.</div>
+        </div>
+      </div></article>
 
     <article class="qitem" data-sec="2" data-num="13"><h3 class="q">List the types of polarisation</h3><div class="ans">
       <ul>
@@ -374,12 +372,15 @@ body{
     </div></article>
 
     <article class="qitem" data-sec="2" data-num="17"><h3 class="q">Classification of dielectrics</h3><div class="ans">
-      <ul>
-        <li><b>Polar</b> — molecules with a permanent dipole moment, e.g. $\text{H}_2\text{O}$.</li>
-        <li><b>Non-polar</b> — symmetric molecules, dipoles only induced by an external field, e.g. $\text{O}_2$.</li>
-      </ul>
-      (May also be split by linearity — linear vs. non-linear like ferroelectrics — and isotropic vs. anisotropic.)
-    </div></article>
+        Dielectrics are classified by how their permittivity $\varepsilon$ behaves:
+        <ul>
+          <li><b>Homogeneous vs inhomogeneous</b> — does $\varepsilon$ depend on position $(x,y,z)$?</li>
+          <li><b>Linear vs non-linear</b> — does $\varepsilon$ depend on the field $\vec{E}$? (non-linear e.g. ferroelectrics)</li>
+          <li><b>Isotropic vs anisotropic</b> — does $\varepsilon$ depend on direction?</li>
+          <li><b>Dispersive</b> — does $\varepsilon$ depend on frequency?</li>
+        </ul>
+        Also described by <b>dielectric loss</b> and <b>breakdown voltage</b>. (By dipole type: polar, e.g. $\text{H}_2\text{O}$, vs non-polar, e.g. $\text{O}_2$.)
+      </div></article>
 
     <article class="qitem" data-sec="2" data-num="18"><h3 class="q">Boundary condition for vector D</h3><div class="ans">
       The normal component of $\vec{D}$ jumps by the free surface charge density:
@@ -482,19 +483,20 @@ body{
     </div></article>
 
     <article class="qitem" data-sec="3" data-num="28"><h3 class="q">Resistivity of copper (with unit)</h3><div class="ans">
-      $$\rho_{Cu} \approx 1.68\times10^{-8}\ \Omega\cdot\text{m}\quad(\text{at }20^\circ\text{C})$$
-      One of the best common conductors (very low resistivity).
-    </div></article>
+        $$\rho_{Cu} \approx 1.7\times10^{-8}\ \Omega\cdot\text{m} \;\approx\; 0.0175\ \frac{\Omega\cdot\text{mm}^2}{\text{m}}\quad(\text{at }20^\circ\text{C})$$
+        One of the best common conductors (very low resistivity).
+      </div></article>
 
     <article class="qitem" data-sec="3" data-num="29"><h3 class="q">Temperature dependence of resistance — formula and α values</h3><div class="ans">
-      $$R(T) = R_0\,\bigl[\,1 + \alpha\,(T - T_0)\,\bigr]$$
-      $\alpha$ is the temperature coefficient of resistance:
-      <ul>
-        <li>Copper: $\alpha_{Cu} \approx 3.9\times10^{-3}\ \text{K}^{-1}\;(\approx 0.004)$</li>
-        <li>Metals: $\alpha &gt; 0$ — resistance rises with temperature.</li>
-        <li>Electrolytes and semiconductors: $\alpha &lt; 0$ — resistance falls with temperature.</li>
-      </ul>
-    </div></article>
+        $$R(T) = R_0\,\bigl[\,1 + \alpha\,(T - T_0)\,\bigr]$$
+        $\alpha$ = temperature coefficient of resistance:
+        <ul>
+          <li>Copper: $\alpha_{Cu} \approx 4\times10^{-3}\ \text{K}^{-1}$.</li>
+          <li>Metals: $\alpha \approx (4\text{–}5)\times10^{-3}\ \text{K}^{-1}\,(&gt;0)$ — resistance rises with temperature.</li>
+          <li>Electrolytes: $\alpha \approx -(1.5\text{–}2.5)\times10^{-2}\ \text{K}^{-1}\,(&lt;0)$ — resistance falls with temperature.</li>
+          <li>Semiconductors: $\alpha \approx -(10^{-2}\text{–}10^{-1})\ \text{K}^{-1}\,(&lt;0)$.</li>
+        </ul>
+      </div></article>
 
     <article class="qitem" data-sec="3" data-num="30"><h3 class="q">EMF (electromotive force) definition</h3><div class="ans">
       Energy supplied by a source (e.g. a battery) per unit charge to drive current around a complete circuit:
@@ -521,18 +523,17 @@ body{
     </div></article>
 
     <article class="qitem" data-sec="3" data-num="34"><h3 class="q">Safety standards for DC and AC current</h3><div class="ans">
-      Two safety essentials the examiner expects:
-      <ul>
-        <li><b>Grounding (protective earthing)</b> — exposed metal parts are connected to earth, so a fault current flows to ground and trips the protection instead of through a person.</li>
-        <li><b>Maximum permissible body current</b>: $I_{DC} = 50\,\text{mA}$ for DC and $I_{AC} = 25\,\text{mA}$ for AC.</li>
-      </ul>
-      The AC limit is lower because mains-frequency AC is more dangerous — it more readily causes muscle tetany and fibrillation.
-    </div></article>
+        <b>Protective measures:</b> protective <b>grounding (earthing)</b> and <b>insulated gloves / tools</b>.
+        <p><b>Safe touch voltages:</b> AC $\le 50\,\text{V}$; DC $\le 120\,\text{V}$ (dry conditions — lower in wet/hazardous environments).</p>
+        <p><b>Permissible body current:</b> perception / let-go around $\sim 10\,\text{mA}$; commonly cited limits $\sim 50\,\text{mA}$ (DC) and $\sim 25\,\text{mA}$ (AC). AC at mains frequency is more dangerous, so its limit is lower.</p>
+      </div></article>
 
     <article class="qitem" data-sec="4" data-num="35"><h3 class="q">Grassmann law (force on a current element)</h3><div class="ans">
-      Differential magnetic force on a current element $I\,d\vec{l}$ in an external field $\vec{B}$:
-      $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
-    </div></article>
+        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1 d\vec{l}_1$ and $I_2 d\vec{l}_2$:
+        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[(d\vec{l}_1 \times \vec{r}_{12}) \times d\vec{l}_2\bigr]$$
+        As a special case, the force on a single current element in an external field $\vec{B}$:
+        $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
+      </div></article>
 
     <article class="qitem" data-sec="4" data-num="36"><h3 class="q">Biot–Savart law</h3><div class="ans">
       Magnetic flux density produced by a current element:

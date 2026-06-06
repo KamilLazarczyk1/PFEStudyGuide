@@ -261,16 +261,17 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">6</span><div class="qtext">Definition of voltage</div></div>
       <div class="answer">
-        Voltage (potential difference) = work per unit charge needed to move a charge between two points:
+        Voltage (potential difference) between two points — the work per unit charge to move a charge between them, equal to the line integral of the field:
         $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla V$, used in the potential definition.)
       </div>
     </div>
 
     <div class="card">
       <div class="q"><span class="num">7</span><div class="qtext">Definition of potential; potential of point $P$ at distance $R$ from charge $q$</div></div>
       <div class="answer">
-        Electric potential = work done per unit charge to bring a positive test charge from infinity to point $P$:
-        $$V = \frac{W_{\infty\to P}}{q_0}\ \left[\text{V}\right]$$
+        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla V$:
+        $$V = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
         For a point charge:
         $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
       </div>
@@ -339,30 +340,25 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     </div>
 
     <div class="card">
-      <div class="q"><span class="num">12</span><div class="qtext">Sketch of electric shielding (Faraday cage)</div></div>
+      <div class="q"><span class="num">12</span><div class="qtext">Sketch of electric shielding (shielded cable)</div></div>
       <div class="answer">
-        Inside a hollow conductor placed in an external field, free charges redistribute on the outer surface,
-        so the induced charges cancel the field inside. Net field in the cavity is $\vec{E} = 0$ — a protected region.
+        An <b>electric line (cable) is shielded</b> by wrapping the conductor in a (usually grounded) metallic shield: it intercepts external fields and confines the cable's own field, so neighbouring circuits aren't disturbed. Cross-section, centre outwards:
         <div class="diagram">
-          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
-            <g stroke="var(--s1)">
-              <line x1="20" y1="30" x2="120" y2="30"/><polygon points="126,30 116,26 116,34" fill="var(--s1)" stroke="none"/>
-              <line x1="20" y1="85" x2="80" y2="85"/>
-              <line x1="20" y1="140" x2="120" y2="140"/><polygon points="126,140 116,136 116,144" fill="var(--s1)" stroke="none"/>
+          <svg viewBox="0 0 340 196" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(92,98)">
+              <circle r="84" fill="none" class="svg-ink" stroke-width="9" opacity=".4"/>
+              <circle r="60" fill="none" stroke="var(--s4)" stroke-width="9"/>
+              <circle r="38" fill="none" stroke="var(--s5)" stroke-width="12" opacity=".55"/>
+              <circle r="15" fill="var(--s3)"/>
             </g>
-            <g stroke="var(--s1)">
-              <line x1="225" y1="30" x2="280" y2="30"/><polygon points="286,30 276,26 276,34" fill="var(--s1)" stroke="none"/>
-              <line x1="225" y1="140" x2="280" y2="140"/><polygon points="286,140 276,136 276,144" fill="var(--s1)" stroke="none"/>
+            <g font-size="11.5" class="svg-fill">
+              <rect x="196" y="34" width="13" height="13" rx="2" fill="var(--s3)"/><text x="215" y="44">Conductor (Cu core)</text>
+              <rect x="196" y="58" width="13" height="13" rx="2" fill="var(--s5)" opacity=".55"/><text x="215" y="68">Insulation (dielectric)</text>
+              <rect x="196" y="82" width="13" height="13" rx="2" fill="var(--s4)"/><text x="215" y="92">Metallic shield</text>
+              <rect x="196" y="106" width="13" height="13" rx="2" class="svg-fill" opacity=".4"/><text x="215" y="116">Outer jacket</text>
             </g>
-            <rect x="120" y="45" width="65" height="80" rx="6" class="svg-ink" stroke-width="3"/>
-            <text x="152" y="90" text-anchor="middle" font-size="14" font-weight="700" class="svg-fill">E=0</text>
-            <text x="123" y="40" font-size="13" fill="var(--s4)" font-weight="700">−</text>
-            <text x="123" y="122" font-size="13" fill="var(--s4)" font-weight="700">−</text>
-            <text x="178" y="40" font-size="13" fill="var(--s1)" font-weight="700">+</text>
-            <text x="178" y="122" font-size="13" fill="var(--s1)" font-weight="700">+</text>
-            <text x="118" y="138" font-size="10" class="svg-fill" text-anchor="end" dx="-4">conductor</text>
           </svg>
-          <div class="cap">External field stops at the conductor; the cavity stays field-free.</div>
+          <div class="cap">Shielded (coaxial) cable: conductor → dielectric insulation → metallic shield → outer jacket.</div>
         </div>
       </div>
     </div>
@@ -414,11 +410,14 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">17</span><div class="qtext">Classification of dielectrics</div></div>
       <div class="answer">
+        Dielectrics are classified by how their permittivity $\varepsilon$ behaves:
         <ul>
-          <li><b>Polar</b> — molecules with a permanent dipole moment, e.g. $\text{H}_2\text{O}$.</li>
-          <li><b>Non-polar</b> — symmetric molecules, dipoles only induced by an external field, e.g. $\text{O}_2$.</li>
+          <li><b>Homogeneous vs inhomogeneous</b> — does $\varepsilon$ depend on position $(x,y,z)$?</li>
+          <li><b>Linear vs non-linear</b> — does $\varepsilon$ depend on the field $\vec{E}$? (non-linear e.g. ferroelectrics)</li>
+          <li><b>Isotropic vs anisotropic</b> — does $\varepsilon$ depend on direction?</li>
+          <li><b>Dispersive</b> — does $\varepsilon$ depend on frequency?</li>
         </ul>
-        (May also be split by linearity — linear vs. non-linear like ferroelectrics — and isotropic vs. anisotropic.)
+        Also described by <b>dielectric loss</b> and <b>breakdown voltage</b>. (By dipole type: polar, e.g. $\text{H}_2\text{O}$, vs non-polar, e.g. $\text{O}_2$.)
       </div>
     </div>
 
@@ -564,7 +563,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">28</span><div class="qtext">Resistivity of copper (with unit)</div></div>
       <div class="answer">
-        $$\rho_{Cu} \approx 1.68\times10^{-8}\ \Omega\cdot\text{m}\quad(\text{at }20^\circ\text{C})$$
+        $$\rho_{Cu} \approx 1.7\times10^{-8}\ \Omega\cdot\text{m} \;\approx\; 0.0175\ \frac{\Omega\cdot\text{mm}^2}{\text{m}}\quad(\text{at }20^\circ\text{C})$$
         One of the best common conductors (very low resistivity).
       </div>
     </div>
@@ -573,11 +572,12 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">29</span><div class="qtext">Temperature dependence of resistance — formula &amp; $\alpha$ values</div></div>
       <div class="answer">
         $$R(T) = R_0\,\bigl[\,1 + \alpha\,(T - T_0)\,\bigr]$$
-        $\alpha$ is the temperature coefficient of resistance:
+        $\alpha$ = temperature coefficient of resistance:
         <ul>
-          <li>Copper: $\alpha_{Cu} \approx 3.9\times10^{-3}\ \text{K}^{-1}\;(\approx 0.004)$</li>
-          <li>Metals: $\alpha &gt; 0$ — resistance rises with temperature.</li>
-          <li>Electrolytes &amp; semiconductors: $\alpha &lt; 0$ — resistance falls with temperature.</li>
+          <li>Copper: $\alpha_{Cu} \approx 4\times10^{-3}\ \text{K}^{-1}$.</li>
+          <li>Metals: $\alpha \approx (4\text{–}5)\times10^{-3}\ \text{K}^{-1}\,(&gt;0)$ — resistance rises with temperature.</li>
+          <li>Electrolytes: $\alpha \approx -(1.5\text{–}2.5)\times10^{-2}\ \text{K}^{-1}\,(&lt;0)$ — resistance falls with temperature.</li>
+          <li>Semiconductors: $\alpha \approx -(10^{-2}\text{–}10^{-1})\ \text{K}^{-1}\,(&lt;0)$.</li>
         </ul>
       </div>
     </div>
@@ -621,12 +621,9 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">34</span><div class="qtext">Safety standards for DC and AC current</div></div>
       <div class="answer">
-        Two safety essentials the examiner expects:
-        <ul>
-          <li><b>Grounding (protective earthing)</b> — exposed metal parts are connected to earth, so a fault current flows to ground and trips the protection instead of passing through a person.</li>
-          <li><b>Maximum permissible body current</b>: $I_{DC} = 50\,\text{mA}$ for DC and $I_{AC} = 25\,\text{mA}$ for AC.</li>
-        </ul>
-        The AC limit is lower because mains-frequency AC is more dangerous — it more readily causes muscle tetany and ventricular fibrillation.
+        <b>Protective measures:</b> protective <b>grounding (earthing)</b> and <b>insulated gloves / tools</b>.
+        <p><b>Safe touch voltages:</b> AC $\le 50\,\text{V}$; DC $\le 120\,\text{V}$ (dry conditions — lower in wet/hazardous environments).</p>
+        <p><b>Permissible body current:</b> perception / let-go around $\sim 10\,\text{mA}$; commonly cited limits $\sim 50\,\text{mA}$ (DC) and $\sim 25\,\text{mA}$ (AC). AC at mains frequency is more dangerous, so its limit is lower.</p>
       </div>
     </div>
   </section>
@@ -638,7 +635,9 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">35</span><div class="qtext">Grassmann law (force on a current element)</div></div>
       <div class="answer">
-        Differential magnetic force on a current element $I\,d\vec{l}$ in an external field $\vec{B}$:
+        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1 d\vec{l}_1$ and $I_2 d\vec{l}_2$:
+        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[(d\vec{l}_1 \times \vec{r}_{12}) \times d\vec{l}_2\bigr]$$
+        As a special case, the force on a single current element in an external field $\vec{B}$:
         $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
       </div>
     </div>
