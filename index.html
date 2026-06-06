@@ -6,9 +6,9 @@
 <title>Physics for Electronics — Final Exam Study Guide</title>
 
 <!-- KaTeX for LaTeX rendering -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="./katex/katex.min.css">
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/auto-render.min.js"></script>
 
 <style>
 :root{
@@ -838,3 +838,11 @@ search.addEventListener("input",function(){
       var match = q==="" || card.textContent.toLowerCase().indexOf(q)>-1;
       card.classList.toggle("no-match",!match);
       if(match){secVisible=true; anyVisible=true;}
+    });
+    sec.style.display = secVisible ? "" : "none";
+  });
+  empty.style.display = anyVisible ? "none" : "block";
+});
+</script>
+</body>
+</html>

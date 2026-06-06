@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Random Study — Physics for Electronics</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="./katex/katex.min.css">
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/auto-render.min.js"></script>
 
 <style>
 :root{
@@ -135,7 +135,7 @@ body{
       <small>Physics for Electronics — one question at a time</small>
     </h1>
     <div class="spacer"></div>
-    <a class="iconbtn" href="Physics-Electronics-Exam-StudyGuide.html" title="Open the full study guide" style="width:auto;padding:0 12px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">📖 Study guide →</a>
+    <a class="iconbtn" href="index.html" title="Open the full study guide" style="width:auto;padding:0 12px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">📖 Study guide →</a>
     <button class="iconbtn" id="themeBtn" title="Dark mode">🌙</button>
   </div>
 
@@ -707,4 +707,13 @@ document.addEventListener('keydown',function(e){
     if(stage.classList.contains('revealed')) skip(); else reveal();
   } else if(k==='g'){ if(stage.classList.contains('revealed')||current) gotIt(); }
   else if(k==='r'){ studyAgain(); }
-  else if(k=
+  else if(k==='arrowright'||k==='n'){ skip(); }
+  else if(k==='a'){ reveal(); }
+});
+
+function init(){ renderStage(); advance(); }
+function boot(){ if(window.renderMathInElement){ init(); } else { setTimeout(boot,40); } }
+if(document.readyState!=='loading') boot(); else document.addEventListener('DOMContentLoaded',boot);
+</script>
+</body>
+</html>
