@@ -133,6 +133,20 @@ body.flash .card.revealed .answer::after{display:none}
 .empty{display:none; text-align:center; color:var(--muted); padding:40px; font-size:14px}
 footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12.5px;text-align:center}
 @media(max-width:560px){.answer{padding-left:0}.title-row h1{font-size:16px}}
+/* responsive top bar */
+.hamburger{display:none}
+.actions{display:flex; gap:9px; align-items:center}
+@media(max-width:640px){
+  .hamburger{display:inline-flex}
+  .title-row{position:relative}
+  .actions{display:none; position:absolute; top:calc(100% + 8px); right:0; z-index:60;
+    flex-direction:column; align-items:stretch; gap:6px; min-width:210px;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:8px; box-shadow:var(--shadow)}
+  .actions.open{display:flex}
+  .actions .btn{width:100%; justify-content:flex-start}
+  .navchips{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:5px}
+  .navchips::-webkit-scrollbar{height:0}
+}
 </style>
 </head>
 <body>
@@ -144,9 +158,12 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
         <small>Electromagnetism · 50 questions · all answers + LaTeX formulas</small>
       </h1>
       <div class="spacer"></div>
-      <a class="btn" href="Physics-Exam-Randomizer.html" style="text-decoration:none" title="Open the random-study widget">🎲 Random study →</a>
-      <button class="btn" id="flashBtn">🃏 Flashcard mode</button>
-      <button class="btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+      <button class="btn hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div class="actions" id="actions">
+        <a class="btn" href="Physics-Exam-Randomizer.html" style="text-decoration:none" title="Open the random-study widget">🎲 Random study →</a>
+        <button class="btn" id="flashBtn">🃏 Flashcard mode</button>
+        <button class="btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+      </div>
     </div>
     <div class="controls">
       <input id="search" type="search" placeholder="🔎 Search questions, formulas, keywords… (e.g. Gauss, capacitance, skin depth)">
@@ -825,6 +842,19 @@ themeBtn.addEventListener("click",function(){
   root.setAttribute("data-theme",dark?"light":"dark");
   themeBtn.textContent=dark?"🌙":"☀️";
 });
+
+// ---- Mobile menu ----
+var menuBtn=document.getElementById("menuBtn");
+var actionsMenu=document.getElementById("actions");
+if(menuBtn&&actionsMenu){
+  menuBtn.addEventListener("click",function(e){ e.stopPropagation();
+    var open=actionsMenu.classList.toggle("open"); menuBtn.setAttribute("aria-expanded",open); });
+  document.addEventListener("click",function(e){
+    if(actionsMenu.classList.contains("open")&&!actionsMenu.contains(e.target)&&e.target!==menuBtn)
+      actionsMenu.classList.remove("open"); });
+  flashBtn.addEventListener("click",function(){ actionsMenu.classList.remove("open"); });
+  themeBtn.addEventListener("click",function(){ actionsMenu.classList.remove("open"); });
+}
 
 // ---- Search ----
 var search=document.getElementById("search");

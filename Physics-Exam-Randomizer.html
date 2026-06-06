@@ -125,6 +125,20 @@ body{
 .hint span{white-space:nowrap}
 #bank{display:none}
 @media(max-width:560px){.question{font-size:18px}.btn{min-width:0}.k{display:none}}
+/* responsive top bar */
+.hamburger{display:none}
+.actions{display:flex; gap:10px; align-items:center}
+@media(max-width:640px){
+  .hamburger{display:inline-flex; align-items:center; justify-content:center}
+  .top{position:relative}
+  .actions{display:none; position:absolute; top:calc(100% + 8px); right:0; z-index:60;
+    flex-direction:column; align-items:stretch; gap:6px; min-width:200px;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:8px; box-shadow:var(--shadow)}
+  .actions.open{display:flex}
+  .actions .iconbtn{width:100%!important; height:40px; justify-content:flex-start; padding:0 12px!important}
+  .filters{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:5px}
+  .filters::-webkit-scrollbar{height:0}
+}
 </style>
 </head>
 <body>
@@ -135,8 +149,11 @@ body{
       <small>Physics for Electronics — one question at a time</small>
     </h1>
     <div class="spacer"></div>
-    <a class="iconbtn" href="index.html" title="Open the full study guide" style="width:auto;padding:0 12px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">📖 Study guide →</a>
-    <button class="iconbtn" id="themeBtn" title="Dark mode">🌙</button>
+    <button class="iconbtn hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="actions" id="actions">
+      <a class="iconbtn" href="index.html" title="Open the full study guide" style="width:auto;padding:0 12px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">📖 Study guide →</a>
+      <button class="iconbtn" id="themeBtn" title="Dark mode">🌙</button>
+    </div>
   </div>
 
   <div class="filters" id="filters">
@@ -698,6 +715,18 @@ document.getElementById('themeBtn').addEventListener('click',function(){
   var r=document.documentElement, d=r.getAttribute('data-theme')==='dark';
   r.setAttribute('data-theme',d?'light':'dark'); this.textContent=d?'🌙':'☀️';
 });
+// mobile menu
+(function(){
+  var menuBtn=document.getElementById('menuBtn'), actions=document.getElementById('actions');
+  if(!menuBtn||!actions) return;
+  menuBtn.addEventListener('click',function(e){ e.stopPropagation();
+    var open=actions.classList.toggle('open'); menuBtn.setAttribute('aria-expanded',open); });
+  document.addEventListener('click',function(e){
+    if(actions.classList.contains('open')&&!actions.contains(e.target)&&e.target!==menuBtn)
+      actions.classList.remove('open'); });
+  var tb=document.getElementById('themeBtn'); if(tb) tb.addEventListener('click',function(){ actions.classList.remove('open'); });
+})();
+
 // keyboard
 document.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT') return;
