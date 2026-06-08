@@ -258,33 +258,33 @@ body{
       </div></article>
 
     <article class="qitem" data-sec="1" data-num="5"><h3 class="q">Formula for the work of electric forces</h3><div class="ans">
-      Work to move charge $q$ from $a$ to $b$ equals the drop in potential energy:
-      $$W = q\,(V_a - V_b) = \int_a^b q\,\vec{E}\cdot d\vec{l} = -\Delta U$$
-      The electrostatic force is conservative, so $W$ is path-independent.
-    </div></article>
+        Work to move charge $q$ from $a$ to $b$ equals the drop in potential energy:
+        $$W = q\,(\varphi_a - \varphi_b) = \int_a^b q\,\vec{E}\cdot d\vec{l} = -\Delta U$$
+        The electrostatic force is conservative, so $W$ is path-independent.
+      </div></article>
 
     <article class="qitem" data-sec="1" data-num="6"><h3 class="q">Definition of voltage</h3><div class="ans">
         Voltage (potential difference) between two points — the work per unit charge to move a charge between them, equal to the line integral of the field:
-        $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
-        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla V$, used in the potential definition.)
+        $$U_{ab} = \varphi_a - \varphi_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla \varphi$, used in the potential definition.)
       </div></article>
 
     <article class="qitem" data-sec="1" data-num="7"><h3 class="q">Definition of potential; potential of point P at distance R from charge q</h3><div class="ans">
-        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla V$:
-        $$V = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla \varphi$:
+        $$\varphi = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
         For a point charge:
-        $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
+        $$\varphi = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
       </div></article>
 
     <article class="qitem" data-sec="1" data-num="8"><h3 class="q">Potential from superposition (point, line, surface, volume distributions)</h3><div class="ans">
-      Add the contribution of every source element:
-      <ul>
-        <li>Point charges: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\sum_i \frac{q_i}{r_i}$</li>
-        <li>Line: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\tau\,dl}{r}$</li>
-        <li>Surface: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\sigma\,dS}{r}$</li>
-        <li>Volume: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\rho\,dV}{r}$</li>
-      </ul>
-    </div></article>
+        Add the contribution of every source element:
+        <ul>
+          <li>Point charges: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\sum_i \frac{q_i}{r_i}$</li>
+          <li>Line: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\tau\,dl}{r}$</li>
+          <li>Surface: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\sigma\,dS}{r}$</li>
+          <li>Volume: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\rho\,dV}{r}$</li>
+        </ul>
+      </div></article>
 
     <article class="qitem" data-sec="1" data-num="9"><h3 class="q">Divergence — definition and in Cartesian coordinates</h3><div class="ans">
         Divergence = net outward flux of the field per unit volume (a source/sink density). Definition:
@@ -294,11 +294,11 @@ body{
       </div></article>
 
     <article class="qitem" data-sec="1" data-num="10"><h3 class="q">Poisson and Laplace equations</h3><div class="ans">
-      <ul>
-        <li>Poisson (region with charge): $\nabla^2 V = -\dfrac{\rho}{\varepsilon}$</li>
-        <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 V = 0$</li>
-      </ul>
-    </div></article>
+        <ul>
+          <li>Poisson (region with charge): $\nabla^2 \varphi = -\dfrac{\rho}{\varepsilon}$</li>
+          <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 \varphi = 0$</li>
+        </ul>
+      </div></article>
 
     <article class="qitem" data-sec="1" data-num="11"><h3 class="q">Gauss's law — formula and sketch</h3><div class="ans">
       The net electric flux through any closed surface equals the enclosed charge over permittivity.

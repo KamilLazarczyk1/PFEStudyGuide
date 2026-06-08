@@ -254,7 +254,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">5</span><div class="qtext">Formula for the work of electric forces</div></div>
       <div class="answer">
         Work to move charge $q$ from $a$ to $b$ equals the drop in potential energy:
-        $$W = q\,(V_a - V_b) = \int_a^b q\,\vec{E}\cdot d\vec{l} = -\Delta U$$
+        $$W = q\,(\varphi_a - \varphi_b) = \int_a^b q\,\vec{E}\cdot d\vec{l} = -\Delta U$$
         The electrostatic force is conservative, so $W$ is path-independent.
       </div>
     </div>
@@ -263,30 +263,30 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">6</span><div class="qtext">Definition of voltage</div></div>
       <div class="answer">
         Voltage (potential difference) between two points — the work per unit charge to move a charge between them, equal to the line integral of the field:
-        $$U_{ab} = V_a - V_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
-        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla V$, used in the potential definition.)
+        $$U_{ab} = \varphi_a - \varphi_b = \int_a^b \vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        (With this subscript/limit ordering there is no leading minus; the minus lives in the field–potential relation $\vec{E}=-\nabla \varphi$, used in the potential definition.)
       </div>
     </div>
 
     <div class="card">
       <div class="q"><span class="num">7</span><div class="qtext">Definition of potential; potential of point $P$ at distance $R$ from charge $q$</div></div>
       <div class="answer">
-        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla V$:
-        $$V = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
+        Electric potential at $P$ = work per unit charge to bring a positive test charge from infinity to $P$ (against the field). From $\vec{E}=-\nabla \varphi$:
+        $$\varphi = \frac{W_{\infty\to P}}{q_0} = -\int_{\infty}^{P}\vec{E}\cdot d\vec{l}\ \left[\text{V}\right]$$
         For a point charge:
-        $$V = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
+        $$\varphi = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{R}$$
       </div>
     </div>
 
     <div class="card">
       <div class="q"><span class="num">8</span><div class="qtext">Potential from superposition (point, line, surface, volume distributions)</div></div>
       <div class="answer">
-        Add the contribution of every source element ($k = \tfrac{1}{4\pi\varepsilon_0}$):
+        Add the contribution of every source element:
         <ul>
-          <li>Point charges: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\sum_i \frac{q_i}{r_i}$</li>
-          <li>Line: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\tau\,dl}{r}$</li>
-          <li>Surface: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\sigma\,dS}{r}$</li>
-          <li>Volume: $V = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\rho\,dV}{r}$</li>
+          <li>Point charges: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\sum_i \frac{q_i}{r_i}$</li>
+          <li>Line: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\tau\,dl}{r}$</li>
+          <li>Surface: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\sigma\,dS}{r}$</li>
+          <li>Volume: $\varphi = \dfrac{1}{4\pi\varepsilon_0}\displaystyle\int \frac{\rho\,dV}{r}$</li>
         </ul>
       </div>
     </div>
@@ -305,8 +305,8 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">10</span><div class="qtext">Poisson &amp; Laplace equations</div></div>
       <div class="answer">
         <ul>
-          <li>Poisson (region with charge): $\nabla^2 V = -\dfrac{\rho}{\varepsilon}$</li>
-          <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 V = 0$</li>
+          <li>Poisson (region with charge): $\nabla^2 \varphi = -\dfrac{\rho}{\varepsilon}$</li>
+          <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 \varphi = 0$</li>
         </ul>
       </div>
     </div>
