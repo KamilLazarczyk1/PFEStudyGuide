@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheat Sheet — Physics for Electronics</title>
+<script>try{var t=localStorage.getItem("pfe-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="stylesheet" href="./katex/katex.min.css">
+<script defer src="./katex/katex.min.js"></script>
+<script defer src="./katex/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#f4f6fb; --panel:#ffffff; --ink:#1a2233; --muted:#6b7689;
+  --line:#e3e8f0; --badge:#eef2fb; --shadow:0 1px 2px rgba(20,30,60,.06);
+  --s1:#2f6fed; --s2:#8b5cf6; --s3:#e8851b; --s4:#e0457b; --s5:#0fae8e;
+  --s1bg:#eaf1ff; --s2bg:#f1ebff; --s3bg:#fdf0e0; --s4bg:#fde9f1; --s5bg:#e4f8f3;
+}
+html[data-theme="dark"]{
+  --bg:#0f1420; --panel:#161d2c; --ink:#e7ecf5; --muted:#93a0b5;
+  --line:#27314a; --badge:#1d2638; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --s1:#6ea0ff; --s2:#b69bff; --s3:#f3ab57; --s4:#ff7aa8; --s5:#3fd6b6;
+  --s1bg:#16243f; --s2bg:#221b3a; --s3bg:#33240f; --s4bg:#341325; --s5bg:#0e2e29;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.4;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in srgb,var(--panel) 88%,transparent);border-bottom:1px solid var(--line)}
+.head-inner{max-width:1100px;margin:0 auto;padding:10px 16px}
+.title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h1{font-size:17px;margin:0;letter-spacing:.2px}
+h1 small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;margin-top:2px}
+.spacer{flex:1}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:9px;
+  padding:6px 11px;font-size:13px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--s1);color:var(--s1)}
+.hamburger{display:none}
+.actions{display:flex;gap:8px;align-items:center}
+.controls{margin-top:9px}
+#search{width:100%;padding:8px 12px;border-radius:9px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font-size:14px}
+#search:focus{outline:none;border-color:var(--s1)}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 70px}
+.hint{font-size:12.5px;color:var(--muted);margin:0 0 16px;padding:9px 12px;background:var(--badge);
+  border-radius:9px;border:1px solid var(--line)}
+.hint b{color:var(--ink)}
+.section{margin-bottom:22px;scroll-margin-top:120px}
+.sec1{--accent:var(--s1)}.sec2{--accent:var(--s2)}.sec3{--accent:var(--s3)}.sec4{--accent:var(--s4)}.sec5{--accent:var(--s5)}
+.sh{display:flex;align-items:center;gap:9px;font-size:14px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.4px}
+.sh .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:9px}
+.item{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:7px 11px 8px;box-shadow:var(--shadow)}
+.item .n{display:inline-block;min-width:20px;font-weight:700;font-size:11.5px;color:var(--accent)}
+.item .lbl{font-weight:650;font-size:12.5px}
+.item .txt{font-size:13px;margin-top:3px}
+.katex{font-size:1em}
+.katex-display{text-align:left;margin:4px 0 1px;overflow-x:auto;overflow-y:hidden;padding:1px 0}
+.no-match{display:none!important}
+.empty{display:none;text-align:center;color:var(--muted);padding:30px;font-size:14px}
+footer{max-width:1100px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:640px){
+  .head-inner{padding:8px 13px}.title-row h1{font-size:15px}h1 small{display:none}
+  .hamburger{display:inline-flex}.title-row{position:relative}
+  .actions{display:none;position:absolute;top:calc(100% + 8px);right:0;z-index:60;flex-direction:column;
+    align-items:stretch;gap:6px;min-width:200px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .actions.open{display:flex}.actions .btn{width:100%;justify-content:flex-start}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="title-row">
+      <h1>⚡ Cheat Sheet <small>Physics for Electronics — formulas only</small></h1>
+      <div class="spacer"></div>
+      <button class="btn hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div class="actions" id="actions">
+        <a class="btn" href="index.html" style="text-decoration:none" title="Full study guide">📖 Full guide</a>
+        <a class="btn" href="Physics-Exam-Randomizer.html" style="text-decoration:none" title="Random study">🎲 Randomizer</a>
+        <button class="btn" id="themeBtn" title="Dark mode">🌙</button>
+      </div>
+    </div>
+    <div class="controls"><input id="search" type="search" placeholder="🔎 Filter by keyword…"></div>
+  </div>
+</header>
+<main>
+  <p class="hint">Condensed, formula-only revision sheet (50 questions). Open the <b>Full guide</b> for explanations, sketches and context.</p>
+
+  <section class="section sec1" id="s1">
+    <h2 class="sh"><span class="dot"></span>Electrostatic field</h2>
+    <div class="grid">
+      <div class="item"><span class="n">1</span> <span class="lbl">Charge properties</span><div class="txt">Quantization $Q=ne$; conservation; invariance.</div></div>
+      <div class="item"><span class="n">2</span> <span class="lbl">Charge densities</span>$$\tau=\tfrac{dQ}{dl},\ \ \sigma=\tfrac{dQ}{dS},\ \ \rho=\tfrac{dQ}{dV};\quad Q=\textstyle\int\tau\,dl$$</div>
+      <div class="item"><span class="n">3</span> <span class="lbl">Coulomb's law</span>$$\vec F=\tfrac{1}{4\pi\varepsilon_0}\tfrac{q_1 q_2}{|\vec r|^3}\,\vec r$$</div>
+      <div class="item"><span class="n">4</span> <span class="lbl">E-field intensity</span>$$\vec E=\tfrac{\vec F}{q_0}=\tfrac{1}{4\pi\varepsilon_0}\tfrac{q}{|\vec r|^3}\,\vec r$$</div>
+      <div class="item"><span class="n">5</span> <span class="lbl">Work of E-forces</span>$$W=q(V_a-V_b)=\textstyle\int_a^b q\vec E\cdot d\vec l$$</div>
+      <div class="item"><span class="n">6</span> <span class="lbl">Voltage</span>$$U_{ab}=V_a-V_b=\textstyle\int_a^b \vec E\cdot d\vec l$$</div>
+      <div class="item"><span class="n">7</span> <span class="lbl">Potential</span>$$V=\tfrac{1}{4\pi\varepsilon_0}\tfrac{q}{R}=-\textstyle\int_\infty^P \vec E\cdot d\vec l$$</div>
+      <div class="item"><span class="n">8</span> <span class="lbl">Potential — superposition</span>$$V=\tfrac{1}{4\pi\varepsilon_0}\textstyle\int\tfrac{\tau\,dl}{r}\ \ (\Sigma\tfrac{q_i}{r_i},\sigma dS,\rho dV)$$</div>
+      <div class="item"><span class="n">9</span> <span class="lbl">Divergence</span>$$\nabla\cdot\vec E=\tfrac{\partial E_x}{\partial x}+\tfrac{\partial E_y}{\partial y}+\tfrac{\partial E_z}{\partial z}$$</div>
+      <div class="item"><span class="n">10</span> <span class="lbl">Poisson / Laplace</span>$$\nabla^2V=-\tfrac{\rho}{\varepsilon};\qquad \nabla^2V=0$$</div>
+      <div class="item"><span class="n">11</span> <span class="lbl">Gauss's law</span>$$\textstyle\oint \vec E\cdot d\vec S=\tfrac{Q}{\varepsilon_0};\ \ \nabla\cdot\vec E=\tfrac{\rho}{\varepsilon_0}$$</div>
+      <div class="item"><span class="n">12</span> <span class="lbl">Electric shielding</span><div class="txt">Shielded cable: conductor → insulation → shield → jacket; field confined.</div></div>
+    </div>
+  </section>
+
+  <section class="section sec2" id="s2">
+    <h2 class="sh"><span class="dot"></span>Dielectrics</h2>
+    <div class="grid">
+      <div class="item"><span class="n">13</span> <span class="lbl">Polarisation types</span><div class="txt">Orientational; distortion.</div></div>
+      <div class="item"><span class="n">14</span> <span class="lbl">Electric moment</span>$$\vec p=q\vec d$$</div>
+      <div class="item"><span class="n">15</span> <span class="lbl">Polarisation vector</span>$$\vec P=\lim_{\Delta V\to0}\tfrac{\sum\vec p_i}{\Delta V}$$</div>
+      <div class="item"><span class="n">16</span> <span class="lbl">Bound charge</span>$$\sigma_b=\vec P\cdot\hat n,\quad \rho_b=-\nabla\cdot\vec P$$</div>
+      <div class="item"><span class="n">17</span> <span class="lbl">Classification</span><div class="txt">Homogeneity, linearity, isotropy, dispersion.</div></div>
+      <div class="item"><span class="n">18</span> <span class="lbl">Boundary cond. D</span>$$D_{1n}-D_{2n}=\sigma_s$$</div>
+      <div class="item"><span class="n">19</span> <span class="lbl">Capacitance</span>$$C=\tfrac{\varepsilon A}{d},\ \ \tfrac{2\pi\varepsilon L}{\ln(b/a)},\ \ 4\pi\varepsilon\tfrac{ab}{b-a}$$</div>
+      <div class="item"><span class="n">20</span> <span class="lbl">Poynting's hypothesis</span>$$w=\tfrac12\vec E\cdot\vec D+\tfrac12\vec B\cdot\vec H$$</div>
+      <div class="item"><span class="n">21</span> <span class="lbl">Dielectric examples</span><div class="txt">Vacuum 1, air ≈1, paper 3.7, glass 5–10, water 80.</div></div>
+    </div>
+  </section>
+
+  <section class="section sec3" id="s3">
+    <h2 class="sh"><span class="dot"></span>Constant current</h2>
+    <div class="grid">
+      <div class="item"><span class="n">22</span> <span class="lbl">Electric current</span>$$I=\tfrac{dQ}{dt};\quad \vec J=\sigma\vec E$$</div>
+      <div class="item"><span class="n">23</span> <span class="lbl">Current densities</span>$$\vec J=\tfrac{dI}{dS_\perp},\ \ \vec K=\tfrac{dI}{dl_\perp},\ \ I=\tfrac{dQ}{dt}$$</div>
+      <div class="item"><span class="n">24</span> <span class="lbl">Current intensity</span>$$I=\textstyle\int_S \vec J\cdot d\vec S$$</div>
+      <div class="item"><span class="n">25</span> <span class="lbl">Continuity</span>$$\nabla\cdot\vec J=-\tfrac{\partial\rho}{\partial t};\ \textstyle\oint \vec J\cdot d\vec S=-\tfrac{dQ}{dt}$$</div>
+      <div class="item"><span class="n">26</span> <span class="lbl">Boundary cond. Jn</span>$$J_{1n}=J_{2n}$$</div>
+      <div class="item"><span class="n">27</span> <span class="lbl">Ohm's law</span>$$\vec J=\sigma\vec E;\qquad U=IR$$</div>
+      <div class="item"><span class="n">28</span> <span class="lbl">Resistivity of copper</span>$$\rho_{Cu}\approx0.0175\,\tfrac{\Omega\,\text{mm}^2}{\text{m}}\approx1.7\times10^{-8}\,\Omega\text{m}$$</div>
+      <div class="item"><span class="n">29</span> <span class="lbl">Resistance vs temp.</span>$$R=R_0[1+\alpha(T-T_0)],\ \alpha_{Cu}\approx4\cdot10^{-3}$$<div class="txt">metals α &gt; 0; electrolytes / semiconductors α &lt; 0.</div></div>
+      <div class="item"><span class="n">30</span> <span class="lbl">EMF</span>$$\varepsilon=\tfrac{W}{q}=\textstyle\oint \vec E_{ext}\cdot d\vec l$$</div>
+      <div class="item"><span class="n">31</span> <span class="lbl">Kirchhoff I (KCL)</span>$$\textstyle\sum I=0\quad(\text{charge cons.})$$</div>
+      <div class="item"><span class="n">32</span> <span class="lbl">Kirchhoff II (KVL)</span>$$\textstyle\sum U=0\quad(\text{energy cons.})$$</div>
+      <div class="item"><span class="n">33</span> <span class="lbl">Joule heating</span>$$P=I^2R=UI;\ \ w=\vec J\cdot\vec E=\sigma E^2$$</div>
+      <div class="item"><span class="n">34</span> <span class="lbl">Safety standards</span><div class="txt">Grounding + insulated gloves; $U\le50$ V (AC) / $120$ V (DC); $I\lesssim50$ mA (AC 25 mA).</div></div>
+    </div>
+  </section>
+
+  <section class="section sec4" id="s4">
+    <h2 class="sh"><span class="dot"></span>Magnetic field</h2>
+    <div class="grid">
+      <div class="item"><span class="n">35</span> <span class="lbl">Grassmann's law</span>$$d\vec F_{12}=\tfrac{\mu_0}{4\pi}\tfrac{I_1 I_2}{|\vec r_{12}|^3}[d\vec l_2\times(d\vec l_1\times\vec r_{12})]$$</div>
+      <div class="item"><span class="n">36</span> <span class="lbl">Biot–Savart</span>$$d\vec B=\tfrac{\mu_0}{4\pi}\tfrac{I\,d\vec l\times\hat r}{r^2}$$</div>
+      <div class="item"><span class="n">37</span> <span class="lbl">Boundary cond. B</span>$$B_{1n}=B_{2n}$$</div>
+      <div class="item"><span class="n">38</span> <span class="lbl">Magnetic intensity H</span>$$\vec H=\tfrac{\vec B}{\mu_0}-\vec M=\tfrac{\vec B}{\mu}$$</div>
+      <div class="item"><span class="n">39</span> <span class="lbl">Ampère's law</span>$$\textstyle\oint \vec H\cdot d\vec l=I_{enc};\ \nabla\times\vec H=\vec J$$</div>
+      <div class="item"><span class="n">40</span> <span class="lbl">Maxwell–Faraday</span>$$\varepsilon=-\tfrac{d\Phi_m}{dt};\ \nabla\times\vec E=-\tfrac{\partial\vec B}{\partial t}$$</div>
+      <div class="item"><span class="n">41</span> <span class="lbl">Mutual induction</span>$$\varepsilon_2=-M\tfrac{dI_1}{dt}$$</div>
+      <div class="item"><span class="n">42</span> <span class="lbl">Self / mutual EMF</span>$$\varepsilon_L=-L\tfrac{dI}{dt};\ \varepsilon_M=-M\tfrac{dI_2}{dt}$$</div>
+      <div class="item"><span class="n">43</span> <span class="lbl">Magnetic energy</span>$$W_m=\tfrac12 L I^2$$</div>
+      <div class="item"><span class="n">44</span> <span class="lbl">Magnetic energy density</span>$$w_m=\tfrac12\vec B\cdot\vec H=\tfrac{B^2}{2\mu}$$</div>
+    </div>
+  </section>
+
+  <section class="section sec5" id="s5">
+    <h2 class="sh"><span class="dot"></span>Uniform plane wave</h2>
+    <div class="grid">
+      <div class="item"><span class="n">45</span> <span class="lbl">Maxwell (free space)</span>$$\nabla\cdot\vec E=0,\ \nabla\cdot\vec H=0,$$$$\nabla\times\vec E=-\mu_0\tfrac{\partial\vec H}{\partial t},\ \nabla\times\vec H=\varepsilon_0\tfrac{\partial\vec E}{\partial t}$$</div>
+      <div class="item"><span class="n">46</span> <span class="lbl">Helmholtz equation</span>$$\nabla^2\vec E+\beta^2\vec E=0,\ \beta=\omega\sqrt{\mu\varepsilon}$$</div>
+      <div class="item"><span class="n">47</span> <span class="lbl">Wave velocity</span>$$c=\tfrac{1}{\sqrt{\mu_0\varepsilon_0}}\approx3\times10^8\ \text{m/s}$$</div>
+      <div class="item"><span class="n">48</span> <span class="lbl">Plane wave</span><div class="txt">$\vec E\perp\vec H\perp\vec k$, transverse, in phase.</div></div>
+      <div class="item"><span class="n">49</span> <span class="lbl">Wave impedance</span>$$\eta_0=\sqrt{\tfrac{\mu_0}{\varepsilon_0}}\approx120\pi\approx377\ \Omega$$</div>
+      <div class="item"><span class="n">50</span> <span class="lbl">Skin depth</span>$$\delta=\sqrt{\tfrac{2}{\omega\mu\sigma}}$$</div>
+    </div>
+  </section>
+  <div class="empty" id="empty">No formulas match your filter.</div>
+</main>
+<footer>Condensed companion to the full Physics-for-Electronics study guide · formulas aligned with the teacher-checked answer key.</footer>
+<script>
+function renderMath(){ if(window.renderMathInElement){ renderMathInElement(document.body,{
+  delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false}); }
+  else { setTimeout(renderMath,50); } }
+if(document.readyState!=="loading") renderMath(); else document.addEventListener("DOMContentLoaded",renderMath);
+window.addEventListener("load",renderMath);
+
+// theme (persisted)
+var themeBtn=document.getElementById("themeBtn");
+function icon(){ themeBtn.textContent=document.documentElement.getAttribute("data-theme")==="dark"?"☀️":"🌙"; }
+icon();
+themeBtn.addEventListener("click",function(){
+  var r=document.documentElement,next=r.getAttribute("data-theme")==="dark"?"light":"dark";
+  r.setAttribute("data-theme",next); try{localStorage.setItem("pfe-theme",next);}catch(e){} icon(); });
+
+// mobile menu
+var menuBtn=document.getElementById("menuBtn"),actions=document.getElementById("actions");
+menuBtn.addEventListener("click",function(e){ e.stopPropagation();
+  var o=actions.classList.toggle("open"); menuBtn.setAttribute("aria-expanded",o); });
+document.addEventListener("click",function(e){
+  if(actions.classList.contains("open")&&!actions.contains(e.target)&&e.target!==menuBtn) actions.classList.remove("open"); });
+themeBtn.addEventListener("click",function(){ actions.classList.remove("open"); });
+
+// search
+var search=document.getElementById("search"),empty=document.getElementById("empty");
+search.addEventListener("input",function(){
+  var q=search.value.trim().toLowerCase(),any=false;
+  document.querySelectorAll(".section").forEach(function(sec){
+    var vis=false;
+    sec.querySelectorAll(".item").forEach(function(it){
+      var m=q===""||it.textContent.toLowerCase().indexOf(q)>-1;
+      it.classList.toggle("no-match",!m); if(m){vis=true;any=true;} });
+    sec.style.display=vis?"":"none"; });
+  empty.style.display=any?"none":"block"; });
+</script>
+</body>
+</html>
