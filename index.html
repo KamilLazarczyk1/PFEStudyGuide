@@ -370,11 +370,10 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">13</span><div class="qtext">Types of polarisation</div></div>
       <div class="answer">
+        Two types of polarisation:
         <ul>
-          <li><b>Electronic</b> — displacement of the electron cloud relative to the nucleus.</li>
-          <li><b>Ionic</b> — relative displacement of positive and negative ions.</li>
-          <li><b>Orientational / dipolar</b> — alignment of permanent dipoles with the field.</li>
-          <li><b>Interfacial / space-charge</b> — charge accumulation at boundaries/interfaces.</li>
+          <li><b>Orientational</b> — permanent dipoles align with the applied field (polar materials).</li>
+          <li><b>Distortion (deformation)</b> — the field induces dipoles by displacing charges: electronic (electron-cloud shift) and ionic (relative ion shift), in non-polar materials.</li>
         </ul>
       </div>
     </div>
@@ -443,9 +442,10 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">20</span><div class="qtext">Poynting's hypothesis</div></div>
       <div class="answer">
-        The cross product of the electric and magnetic fields gives the direction and magnitude of
-        electromagnetic power flow per unit area:
-        $$\vec{S} = \vec{E}\times\vec{H}\ \left[\text{W/m}^2\right]$$
+        <b>Poynting's hypothesis</b> — electromagnetic energy is stored in the field, described by an energy density. Electric part:
+        $$w_e = \tfrac{1}{2}\,\vec{E}\cdot\vec{D} = \tfrac{1}{2}\,\varepsilon_0\varepsilon_r E^2\ \left[\text{J/m}^3\right]$$
+        Magnetic part: $w_m = \tfrac{1}{2}\,\vec{B}\cdot\vec{H}$. Total energy stored in a volume:
+        $$W = \int_V \left(\tfrac{1}{2}\,\vec{E}\cdot\vec{D} + \tfrac{1}{2}\,\vec{B}\cdot\vec{H}\right) dV$$
       </div>
     </div>
 
@@ -634,8 +634,8 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">35</span><div class="qtext">Grassmann law (force on a current element)</div></div>
       <div class="answer">
-        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1 d\vec{l}_1$ and $I_2 d\vec{l}_2$:
-        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[(d\vec{l}_1 \times \vec{r}_{12}) \times d\vec{l}_2\bigr]$$
+        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1\,d\vec{l}_1$ and $I_2\,d\vec{l}_2$:
+        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[\,d\vec{l}_2 \times (d\vec{l}_1 \times \vec{r}_{12})\,\bigr]$$
         As a special case, the force on a single current element in an external field $\vec{B}$:
         $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
       </div>

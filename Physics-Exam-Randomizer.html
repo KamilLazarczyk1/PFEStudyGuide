@@ -346,13 +346,12 @@ body{
       </div></article>
 
     <article class="qitem" data-sec="2" data-num="13"><h3 class="q">List the types of polarisation</h3><div class="ans">
-      <ul>
-        <li><b>Electronic</b> — displacement of the electron cloud relative to the nucleus.</li>
-        <li><b>Ionic</b> — relative displacement of positive and negative ions.</li>
-        <li><b>Orientational / dipolar</b> — alignment of permanent dipoles with the field.</li>
-        <li><b>Interfacial / space-charge</b> — charge accumulation at boundaries/interfaces.</li>
-      </ul>
-    </div></article>
+        Two types of polarisation:
+        <ul>
+          <li><b>Orientational</b> — permanent dipoles align with the applied field (polar materials).</li>
+          <li><b>Distortion (deformation)</b> — the field induces dipoles by displacing charges: electronic (electron-cloud shift) and ionic (relative ion shift), in non-polar materials.</li>
+        </ul>
+      </div></article>
 
     <article class="qitem" data-sec="2" data-num="14"><h3 class="q">Definition of electric (dipole) moment</h3><div class="ans">
       A measure of the separation of equal and opposite charges:
@@ -398,9 +397,11 @@ body{
     </div></article>
 
     <article class="qitem" data-sec="2" data-num="20"><h3 class="q">Poynting's hypothesis</h3><div class="ans">
-      The cross product of the electric and magnetic fields gives the direction and magnitude of electromagnetic power flow per unit area:
-      $$\vec{S} = \vec{E}\times\vec{H}\ \left[\text{W/m}^2\right]$$
-    </div></article>
+        <b>Poynting's hypothesis</b> — electromagnetic energy is stored in the field, described by an energy density. Electric part:
+        $$w_e = \tfrac{1}{2}\,\vec{E}\cdot\vec{D} = \tfrac{1}{2}\,\varepsilon_0\varepsilon_r E^2\ \left[\text{J/m}^3\right]$$
+        Magnetic part: $w_m = \tfrac{1}{2}\,\vec{B}\cdot\vec{H}$. Total energy stored in a volume:
+        $$W = \int_V \left(\tfrac{1}{2}\,\vec{E}\cdot\vec{D} + \tfrac{1}{2}\,\vec{B}\cdot\vec{H}\right) dV$$
+      </div></article>
 
     <article class="qitem" data-sec="2" data-num="21"><h3 class="q">Examples of dielectrics with relative permittivity</h3><div class="ans">
       <ul>
@@ -530,8 +531,8 @@ body{
       </div></article>
 
     <article class="qitem" data-sec="4" data-num="35"><h3 class="q">Grassmann law (force on a current element)</h3><div class="ans">
-        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1 d\vec{l}_1$ and $I_2 d\vec{l}_2$:
-        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[(d\vec{l}_1 \times \vec{r}_{12}) \times d\vec{l}_2\bigr]$$
+        Grassmann's law gives the magnetic force between <b>two current elements</b> $I_1\,d\vec{l}_1$ and $I_2\,d\vec{l}_2$:
+        $$d\vec{F}_{12} = \frac{\mu_0}{4\pi}\,\frac{I_1 I_2}{|\vec{r}_{12}|^3}\,\bigl[\,d\vec{l}_2 \times (d\vec{l}_1 \times \vec{r}_{12})\,\bigr]$$
         As a special case, the force on a single current element in an external field $\vec{B}$:
         $$d\vec{F} = I\,d\vec{l}\times\vec{B}$$
       </div></article>
