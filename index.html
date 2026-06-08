@@ -672,11 +672,12 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
     <div class="card">
       <div class="q"><span class="num">39</span><div class="qtext">Ampère's law</div></div>
       <div class="answer">
-        The line integral of $\vec{H}$ around a closed loop equals the enclosed free current.
+        The line integral of $\vec{H}$ around a closed loop equals the enclosed free current plus the displacement current (Ampère–Maxwell law).
         <ul>
-          <li>Integral form: $\displaystyle\oint \vec{H}\cdot d\vec{l} = I_{enc}$</li>
-          <li>Differential form: $\nabla\times\vec{H} = \vec{J}$</li>
+          <li>Integral form: $\displaystyle\oint \vec{H}\cdot d\vec{l} = I_{enc} + \frac{d\Psi_D}{dt}$</li>
+          <li>Differential form: $\nabla\times\vec{H} = \vec{J} + \dfrac{\partial\vec{D}}{\partial t}$</li>
         </ul>
+        where $\Psi_D = \int_S \vec{D}\cdot d\vec{S}$ is the electric (displacement) flux; for steady fields the extra term vanishes and it reduces to $\oint\vec{H}\cdot d\vec{l}=I_{enc}$.
       </div>
     </div>
 
