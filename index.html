@@ -385,7 +385,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">14</span><div class="qtext">Definition of electric (dipole) moment</div></div>
       <div class="answer">
         A measure of the separation of equal and opposite charges:
-        $$\vec{p} = q\,\vec{d}\qquad \left[\text{C}\cdot\text{m}\right]$$
+        $$\vec{p} = q\,\vec{l}\qquad \left[\text{C}\cdot\text{m}\right]$$
         Directed from the negative to the positive charge.
       </div>
     </div>
@@ -424,8 +424,8 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">18</span><div class="qtext">Boundary condition for vector $\vec{D}$</div></div>
       <div class="answer">
         The normal component of $\vec{D}$ jumps by the free surface charge density:
-        $$D_{1n} - D_{2n} = \sigma_s$$
-        If there is no free surface charge ($\sigma_s = 0$): $\;D_{1n} = D_{2n}$ (normal component continuous).
+        $$D_{1n} - D_{2n} = \sigma_q$$
+        If there is no free surface charge ($\sigma_q = 0$): $\;D_{1n} = D_{2n}$ (normal component continuous).
       </div>
     </div>
 
@@ -433,9 +433,9 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">19</span><div class="qtext">Capacitance — parallel-plate, cylindrical, spherical</div></div>
       <div class="answer">
         <ul>
-          <li>Parallel plate: $C = \dfrac{\varepsilon A}{d}$</li>
-          <li>Cylindrical (length $L$, radii $a&lt;b$): $C = \dfrac{2\pi\varepsilon L}{\ln(b/a)}$</li>
-          <li>Spherical (radii $a&lt;b$): $C = 4\pi\varepsilon\,\dfrac{ab}{b-a}$</li>
+          <li>Parallel plate: $C = \dfrac{\varepsilon S}{d}$</li>
+          <li>Cylindrical (length $L$, radii $R_1&lt;R_2$): $C = \dfrac{2\pi\varepsilon L}{\ln(R_2/R_1)}$</li>
+          <li>Spherical (radii $R_1&lt;R_2$): $C = \dfrac{4\pi\varepsilon}{1/R_1-1/R_2}$</li>
         </ul>
       </div>
     </div>
@@ -684,7 +684,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="answer">
         A time-varying magnetic field produces a circulating (non-conservative) electric field.
         <ul>
-          <li>Integral form: $\varepsilon = -\dfrac{d\Phi_m}{dt}$</li>
+          <li>Integral form: $\varepsilon = -\dfrac{d\Psi_m}{dt}$</li>
           <li>Differential form: $\nabla\times\vec{E} = -\dfrac{\partial\vec{B}}{\partial t}$</li>
         </ul>
       </div>
@@ -743,8 +743,8 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">46</span><div class="qtext">Helmholtz wave equation</div></div>
       <div class="answer">
         The frequency-domain wave equation derived from Maxwell's equations:
-        $$\nabla^2\vec{E} + \beta^2\vec{E} = 0,\qquad \beta = \omega\sqrt{\mu\varepsilon}$$
-        where $\beta$ is the phase constant (wave number).
+        $$\nabla^2\vec{E} - \gamma^2\vec{E} = 0,\qquad \gamma^2 = -\omega^2\mu\varepsilon$$
+        where $\gamma$ is the propagation constant.
       </div>
     </div>
 
