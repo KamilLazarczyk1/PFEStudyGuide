@@ -305,8 +305,8 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
       <div class="q"><span class="num">10</span><div class="qtext">Poisson &amp; Laplace equations</div></div>
       <div class="answer">
         <ul>
-          <li>Poisson (region with charge): $\nabla^2 \varphi = -\dfrac{\rho}{\varepsilon}$</li>
-          <li>Laplace (charge-free region, $\rho = 0$): $\nabla^2 \varphi = 0$</li>
+          <li>Poisson (region with charge): $\nabla^2 \varphi = -\dfrac{\rho_v}{\varepsilon_0}$</li>
+          <li>Laplace (charge-free region, $\rho_v = 0$): $\nabla^2 \varphi = 0$</li>
         </ul>
       </div>
     </div>
@@ -320,22 +320,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
           <li>Differential form: $\nabla\cdot\vec{E} = \dfrac{\rho}{\varepsilon_0}$</li>
         </ul>
         <div class="diagram">
-          <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
-            <circle cx="140" cy="85" r="60" class="svg-ink" stroke-dasharray="5 4"/>
-            <g stroke="var(--s1)">
-              <line x1="140" y1="85" x2="140" y2="14"/><polygon points="140,8 136,18 144,18" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="140" y2="156"/><polygon points="140,162 136,152 144,152" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="211" y2="85"/><polygon points="217,85 207,81 207,89" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="69" y2="85"/><polygon points="63,85 73,81 73,89" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="190" y2="35"/><polygon points="195,30 185,33 189,40" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="90" y2="35"/><polygon points="85,30 95,33 91,40" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="190" y2="135"/><polygon points="195,140 185,137 189,130" fill="var(--s1)" stroke="none"/>
-              <line x1="140" y1="85" x2="90" y2="135"/><polygon points="85,140 95,137 91,130" fill="var(--s1)" stroke="none"/>
-            </g>
-            <circle cx="140" cy="85" r="13" fill="var(--s4)" stroke="none"/>
-            <text x="140" y="90" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">+q</text>
-            <text x="205" y="150" font-size="11" class="svg-fill">Gaussian surface</text>
-          </svg>
+          <img src="./img/gauss.png" alt="Gauss's law — electric flux Ψ_E through a closed surface S enclosing charges q₁, q₂, q₃" style="max-width:100%;height:auto">
           <div class="cap">Field lines from an enclosed charge piercing a closed (Gaussian) surface.</div>
         </div>
       </div>
@@ -476,20 +461,7 @@ footer{max-width:1000px;margin:0 auto;padding:0 20px 50px;color:var(--muted);fon
         Conventional current flows from high to low potential (direction of positive carriers), driven by the
         internal field via $\vec{J} = \sigma\vec{E}$. It is a scalar; the field $\vec{E}$ inside the conductor is non-zero.
         <div class="diagram">
-          <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" stroke-width="1.6" fill="none">
-            <line x1="30" y1="60" x2="80" y2="60" class="svg-ink"/>
-            <rect x="80" y="45" width="140" height="30" rx="4" class="svg-ink"/>
-            <line x1="220" y1="60" x2="270" y2="60" class="svg-ink"/>
-            <line x1="22" y1="48" x2="22" y2="72" class="svg-ink" stroke-width="3"/>
-            <line x1="30" y1="52" x2="30" y2="68" class="svg-ink"/>
-            <line x1="270" y1="52" x2="270" y2="68" class="svg-ink" stroke-width="3"/>
-            <line x1="278" y1="48" x2="278" y2="72" class="svg-ink"/>
-            <text x="14" y="44" font-size="13" class="svg-fill">+</text>
-            <text x="282" y="44" font-size="13" class="svg-fill">−</text>
-            <g stroke="var(--s3)"><line x1="120" y1="60" x2="170" y2="60"/><polygon points="176,60 166,56 166,64" fill="var(--s3)" stroke="none"/></g>
-            <text x="135" y="40" font-size="12" fill="var(--s3)" font-weight="700">I, E</text>
-            <text x="120" y="98" font-size="11" class="svg-fill">conductor / resistor</text>
-          </svg>
+          <img src="./img/current.png" alt="Electric current — positive charges drifting along a conductor between potentials φ₁ and φ₂ under field E" style="max-width:100%;height:auto">
           <div class="cap">Field $\vec E$ drives current $I$ from + to − terminal through the conductor.</div>
         </div>
       </div>
